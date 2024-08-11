@@ -1,4 +1,6 @@
-export async function fetchCars(manufacturer) {
+export async function fetchCars(manufacturer = "audi") {
+  console.log(manufacturer);
+
   // const { manufacturer, year, model, limit, fuel } = filters;
 
   // Set the required headers for the API request

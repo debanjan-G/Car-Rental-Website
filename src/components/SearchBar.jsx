@@ -8,6 +8,7 @@ import { fetchCars } from '@/app/utils';
 const SearchBar = () => {
 
     const [company, setCompany] = useState('');
+    
 
 
     const handleFormSubmit = async (e) => {
