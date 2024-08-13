@@ -4,12 +4,12 @@ import GeneralCarImage from '../../../public/mercedes_PNG80135.jpg'
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import carMileageImg from "../../../public/icons8-car-mileage-50.png"
-import Button from './Button';
 
 const CarCard = ({ name, carClass, cityMileage, year, seats, image }) => {
     return (
         <div className='bg-gray-200 rounded-md text-black m-4 flex flex-col items-center  sm:basis-1/2 md:basis-1/3 lg:basis-1/4 hover:scale-105 transition duration-200 '>
-            <div className='w-full'>
+
+            <div className='w-full h-50'>
                 <Image src={image} alt={name + " image"} width={300} height={300} className='w-fit h-fit object-cover ' />
             </div>
 

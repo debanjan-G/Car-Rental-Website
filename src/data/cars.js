@@ -102,7 +102,7 @@ const CARS = [
     id: 11,
     name: "Mahindra Scorpio",
     image:
-      "https://wallpapers.com/images/featured/scorpio-png-2mliwcs510wsjzdg.jpg",
+      "https://www.pngkey.com/png/full/249-2499637_mahindra-scorpio-4x4-scorpio-car-black-colour-price.png ",
     seatingCapacity: "7",
     mileage: "15 km/l",
     modelYear: "2023",

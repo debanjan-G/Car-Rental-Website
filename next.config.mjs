@@ -12,6 +12,7 @@ const nextConfig = {
       "img.gaadicdn.com",
       "wallpapers.com",
       "www.pngitem.com",
+      "www.pngkey.com",
     ],
   },
 };
