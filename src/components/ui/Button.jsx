@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Button = ({ children, btnType = "button" }) => {
+const Button = ({ children, btnType = "button", onClickHandler }) => {
     return (
         <div>
-            <button type={btnType} className="w-full text-sm md:text-lg bg-blue-700 p-3 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">{children}</button>
+            <button type={btnType} onClick={onClickHandler} className="w-full text-sm md:text-lg bg-blue-700 p-3 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">{children}</button>
         </div>
     )
 }

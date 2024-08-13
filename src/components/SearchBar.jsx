@@ -5,16 +5,16 @@ import CompanyMenu from './CompanyMenu';
 import axios from 'axios';
 import { fetchCars } from '@/app/utils';
 
-const SearchBar = ({ setCars, company, setCompany }) => {
+const SearchBar = ({ setCars }) => {
 
+    const [searchedCarCompany, setSearchedCarCompany] = useState()
 
     const handleFormSubmit = async (e) => {
         try {
             e.preventDefault();
             console.log(company);
-            const response = await fetchCars(company);
-            setCars(response);
-            console.log(response);
+
+
         } catch (err) {
             console.log("ERROR: ", err);
         }
@@ -27,7 +27,7 @@ const SearchBar = ({ setCars, company, setCompany }) => {
             <div className='flex gap-2'>
 
 
-                <CompanyMenu company={company} setCompany={setCompany} />
+                <CompanyMenu company={searchedCarCompany} setCompany={setSearchedCarCompany} />
                 <button type='submit' className='hover:scale-105 transition duration-200'>  <SearchIcon />
                 </button>
 

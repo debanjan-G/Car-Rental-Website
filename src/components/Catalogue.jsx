@@ -4,6 +4,12 @@ import React, { useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
 import { fetchCars } from '@/app/utils';
 import CarCard from './ui/CarCard';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Terminal } from "lucide-react"
+
+
+
+
 
 const Catalogue = () => {
 
@@ -11,14 +17,8 @@ const Catalogue = () => {
     const [company, setCompany] = useState('');
 
     useEffect(() => {
-        const getCars = async () => {
-            const response = await fetchCars();
-            console.log(response);
+        // fetch all cars from API
 
-            setCars(response);
-        }
-
-        getCars();
 
     }, [])
 
@@ -38,8 +38,16 @@ const Catalogue = () => {
                     )
                     :
                     <div className='flex h-full items-center justify-center'>
-                        <p className='w-1/2 mx-auto mt-8 text-center
-                    text-2xl font-semibold'>Sorry, we don't have any cars from {company} available right now. Please check back later or explore our other options!</p>
+                        <Alert className='w-1/2 bg-red-100 mt-8'>
+
+                            <AlertTitle className='text-2xl font-bold'>
+                                <Terminal className="h-4 w-4 inline m-2" />
+                                Heads up!
+                            </AlertTitle>
+                            <AlertDescription className='text-lg'>
+                                Sorry, we don't have any cars matching your search available for rent right now. Please check back later or explore other options!
+                            </AlertDescription>
+                        </Alert>
                     </div>
 
                 }

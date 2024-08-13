@@ -27,8 +27,8 @@ const CarCard = ({ company, model, carClass, cityMileage, year, fuelType }) => {
 
 
                 </div>
-                <div className='w-full mx-auto'>
-                    <button className='bg-blue-300 p-2 rounded-full w-full hover:bg-blue-500 hover:text-white duration-200 transition'>Rent Car</button>
+                <div className='text-center'>
+                    <button className='bg-blue-300 p-2 rounded-full w-36  hover:bg-blue-500 hover:text-white duration-200 transition'>Rent Car</button>
                 </div>
 
             </div>
