@@ -1,4 +1,4 @@
-export async function fetchCars(manufacturer = "audi") {
+export async function fetchCars(manufacturer = "Maruti Suzuki") {
   console.log(manufacturer);
 
   // const { manufacturer, year, model, limit, fuel } = filters;

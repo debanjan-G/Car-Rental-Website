@@ -23,7 +23,7 @@ const CompanyMenu = ({ company, setCompany }) => {
                 <ComboboxInput
                     autoComplete='off'
                     className="p-2 w-full bg-slate-100 rounded-md"
-                    placeholder='Company name'
+                    placeholder='Company name (eg: Ford)'
                     aria-label="Company"
                     onChange={(e) => setQuery(e.target.value)}
                 />

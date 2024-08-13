@@ -5,10 +5,7 @@ import CompanyMenu from './CompanyMenu';
 import axios from 'axios';
 import { fetchCars } from '@/app/utils';
 
-const SearchBar = () => {
-
-    const [company, setCompany] = useState('');
-    
+const SearchBar = ({ setCars, company, setCompany }) => {
 
 
     const handleFormSubmit = async (e) => {
@@ -16,6 +13,7 @@ const SearchBar = () => {
             e.preventDefault();
             console.log(company);
             const response = await fetchCars(company);
+            setCars(response);
             console.log(response);
         } catch (err) {
             console.log("ERROR: ", err);
@@ -30,7 +28,8 @@ const SearchBar = () => {
 
 
                 <CompanyMenu company={company} setCompany={setCompany} />
-                <button type='submit' className='hover:scale-105 transition duration-200'>  <SearchIcon /></button>
+                <button type='submit' className='hover:scale-105 transition duration-200'>  <SearchIcon />
+                </button>
 
 
             </div>
