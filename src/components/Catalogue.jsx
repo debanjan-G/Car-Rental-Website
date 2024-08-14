@@ -27,7 +27,7 @@ const Catalogue = () => {
             <h1 className='font-semibold'>Car Catalogue</h1>
             <p className='font-light'>Explore cars you might like</p>
 
-            <SearchBar setCars={setCars} company={company} setCompany={setCompany} />
+            <SearchBar setCars={setCars} cars={cars}  />
 
             <div className='w-full flex flex-wrap justify-center'>
 
