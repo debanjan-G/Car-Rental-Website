@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
-import { fetchCars } from '@/app/utils';
 import CarCard from './ui/CarCard';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
@@ -33,7 +32,7 @@ const Catalogue = () => {
 
                 {cars.length > 0 ?
                     (
-                        cars.map((car, index) =>
+                        cars.map((car) =>
                             <CarCard key={car.id} name={car.name} carClass={car.modelType} year={car.modelYear} cityMileage={car.mileage} seats={car.seatingCapacity} image={car.image} />)
                     )
                     :
