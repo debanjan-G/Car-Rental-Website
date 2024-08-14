@@ -6,7 +6,7 @@ import { fetchCars } from '@/app/utils';
 import CarCard from './ui/CarCard';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
-
+import CARS from '@/data/cars';
 
 
 
@@ -18,7 +18,7 @@ const Catalogue = () => {
 
     useEffect(() => {
         // fetch all cars from API
-
+        setCars(CARS);
 
     }, [])
 
@@ -27,14 +27,14 @@ const Catalogue = () => {
             <h1 className='font-semibold'>Car Catalogue</h1>
             <p className='font-light'>Explore cars you might like</p>
 
-            <SearchBar setCars={setCars} company={company} setCompany={setCompany} />
+            <SearchBar setCars={setCars} cars={cars}  />
 
             <div className='w-full flex flex-wrap justify-center'>
 
                 {cars.length > 0 ?
                     (
                         cars.map((car, index) =>
-                            <CarCard fuelType={car.fuel_type} key={index} company={car.make} model={car.model} carClass={car.class} year={car.year} cityMileage={car.city_mpg} />)
+                            <CarCard key={car.id} name={car.name} carClass={car.modelType} year={car.modelYear} cityMileage={car.mileage} seats={car.seatingCapacity} image={car.image} />)
                     )
                     :
                     <div className='flex h-full items-center justify-center'>

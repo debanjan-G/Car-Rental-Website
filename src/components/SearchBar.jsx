@@ -4,6 +4,7 @@ import SearchIcon from './ui/SearchIcon';
 import CompanyMenu from './CompanyMenu';
 import axios from 'axios';
 import { fetchCars } from '@/app/utils';
+import CARS from '@/data/cars';
 
 const SearchBar = ({ setCars }) => {
 
@@ -12,8 +13,15 @@ const SearchBar = ({ setCars }) => {
     const handleFormSubmit = async (e) => {
         try {
             e.preventDefault();
-            console.log(company);
+            console.log(searchedCarCompany);
 
+            // update the state
+            const updatedCars = CARS.filter((company) => company.name.includes(searchedCarCompany))
+
+            console.log("UPDATED CARS = ", updatedCars);
+
+
+            setCars(updatedCars);
 
         } catch (err) {
             console.log("ERROR: ", err);

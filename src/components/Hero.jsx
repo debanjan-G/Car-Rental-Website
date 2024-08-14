@@ -10,7 +10,6 @@ const Hero = () => {
     const scrollTargetRef = useRef();
 
     const scrollToSearch = () => {
-        console.log("scrolling...");
         scrollTargetRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
