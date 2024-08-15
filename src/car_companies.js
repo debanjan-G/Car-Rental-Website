@@ -4,4 +4,5 @@ export const companies = [
   "Tata",
   "Mahindra",
   "Honda",
+  "Ford",
 ];
