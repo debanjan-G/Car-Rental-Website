@@ -1,11 +1,21 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import GeneralCarImage from '../../../public/mercedes_PNG80135.jpg'
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import carMileageImg from "../../../public/icons8-car-mileage-50.png"
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const CarCard = ({ name, carClass, cityMileage, year, seats, image }) => {
+    const router = useRouter();
+
+    const navigateToCheckout = () => {
+        router.push(`/checkout?car=${name}`);
+    }
+
+
     return (
         <div className='bg-gray-200 rounded-md text-black m-4 flex flex-col items-center  sm:basis-1/2 md:basis-1/3 lg:basis-1/4 hover:scale-105 transition duration-200 '>
 
@@ -28,7 +38,7 @@ const CarCard = ({ name, carClass, cityMileage, year, seats, image }) => {
 
                 </div>
                 <div className='text-center'>
-                    <button className='bg-blue-300 p-2 rounded-full w-36  hover:bg-blue-500 hover:text-white duration-200 transition'>Rent Car</button>
+                    <button onClick={navigateToCheckout} className='bg-blue-300 text-blue-950 p-2 rounded-full w-36  hover:bg-blue-500 hover:text-white duration-200 transition no-underline'>Rent Car</button>
                 </div>
 
             </div>
