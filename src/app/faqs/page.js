@@ -1,7 +1,12 @@
 import React from "react";
+import Faqs from "@/components/Faqs";
 
 const page = () => {
-  return <div>FAQs PAGE</div>;
+  return (
+    <>
+      <Faqs />
+    </>
+  );
 };
 
 export default page;
