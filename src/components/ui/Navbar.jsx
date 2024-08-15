@@ -1,36 +1,57 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
-
+import { usePathname, useRouter } from 'next/navigation'
+import { Tab, TabGroup, TabList } from '@headlessui/react'
 
 const Navbar = () => {
+    const pathname = usePathname()
+
+    console.log(pathname);
+
+
     return (
-        <header className='flex justify-between px-6 md:px-16 py-4'>
-            <Link href="/" className='no-underline text-black font-extrabold text-xl md:text-2xl'>  🚗  CarHub</Link>
+        <header className='flex justify-between items-center px-6 md:px-16 py-4'>
+
+            <Link href="/" className='no-underline text-black font-extrabold text-xl md:text-2xl'>
+                <h1 className='font-extrabold text-sm md:text-2xl'> 🚗  CarHub</h1>
+            </Link>
+
             <TabGroup>
-                <TabList>
-                    <Link href='/checkout' className='no-underline  p-2 rounded-full'>
-                        <Tab className='data-[selected]:bg-blue-500 rounded-md p-2 border-none data-[selected]:text-white text-base md:text-xl mx-2  md:w-24 lg:w-32'>
+                <TabList className="flex gap-1 md:gap-4">
+                    <Link href='/checkout' className='no-underline p-2 rounded-full'>
+                        <Tab
+                            className={`rounded-full py-1 px-1 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
+                        ${pathname === '/checkout' ? 'bg-blue-500 text-white' : 'data-[hover]:bg-white/5'} 
+                        transition duration-200`}
+                        >
                             Checkout
                         </Tab>
                     </Link>
 
-                    <Link href='/pricing' className='no-underline  p-2 rounded-full'>
-                        <Tab className='data-[selected]:bg-blue-500 rounded-md p-2 border-none data-[selected]:text-white text-base md:text-xl mx-2  md:w-24 lg:w-32'>
+                    <Link href='/pricing' className='no-underline p-2 rounded-full'>
+                        <Tab
+                            className={`rounded-full py-1 px-1 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
+                        ${pathname === '/pricing' ? 'bg-blue-500 text-white' : 'data-[hover]:bg-white/5'} 
+                        transition duration-200`}
+                        >
                             Pricing
                         </Tab>
                     </Link>
 
-                    <Link href='/faqs' className='no-underline  p-2 rounded-full'>
-                        <Tab className='data-[selected]:bg-blue-500 rounded-md p-2 border-none data-[selected]:text-white text-base md:text-xl mx-2  md:w-24 lg:w-32'>
+                    <Link href='/faqs' className='no-underline p-2 rounded-full'>
+                        <Tab
+                            className={`rounded-full py-1 px-1 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
+                        ${pathname === '/faqs' ? 'bg-blue-500 text-white' : 'data-[hover]:bg-white/5'} 
+                        transition duration-200`}
+                        >
                             FAQs
                         </Tab>
                     </Link>
-
                 </TabList>
             </TabGroup>
 
-        </header >
+        </header>
     )
 }
 
