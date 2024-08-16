@@ -8,9 +8,19 @@ import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { FaCar } from "react-icons/fa";
 import { LuFuel } from "react-icons/lu";
 import { Field, Fieldset, Input, Label, Legend, Textarea } from '@headlessui/react'
-import CalenderForm from "./ui/DatePicker"
 import DatePicker from './ui/DatePicker';
 import RentConfirmed from './RentConfirmed';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const Checkout = () => {
 
@@ -133,18 +143,37 @@ const Checkout = () => {
 
                             <Field>
                                 <Label className="block">Pickup Location</Label>
-                                <Input className="mt-1 block rounded-md p-2 shadow-md w-full" name="pickup-location" placeholder='eg: 123 Main St, Downtown Central' required />                        </Field>
-
-                            <Field>
-                                <Label className="block">Delivery notes (optional)</Label>
-                                <Textarea className="resize-none mt-1 block rounded-md p-2 shadow-md w-full" rows={6} name="notes" />
+                                <Input className="mt-1 block rounded-md p-2 shadow-md w-full" name="pickup-location" placeholder='eg: 123 Main St, Downtown Central' required />
                             </Field>
+
+
 
                             {rentDuration ?
                                 <div>
                                     <p>Rent Duration = {rentDuration} hours</p>
                                     <p>Total Cost = ₹{baseRate * rentDuration}</p>
-                                    <button onClick={() => setIsConfirmed(true)} type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Confirm Rent</button>
+
+
+                                    <AlertDialog>
+                                        <AlertDialogTrigger className='w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition'>Confirm Rent</AlertDialogTrigger>
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>You're almost ready to hit the road!</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    By confirming, you agree to the rental terms and conditions. Your selected car will be reserved for you, and the rental process will begin.
+                                                    Please review your details carefully before proceeding.
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter className='flex items-center'>
+                                                <AlertDialogCancel className='my-0 bg-red-500 text-white hover:bg-red-400 '>Cancel</AlertDialogCancel>
+                                                <AlertDialogAction className='my-0 bg-blue-500' onClick={() => setIsConfirmed(true)} type='submit'>Confirm Rent</AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
+
+
+
+
                                 </div> :
                                 <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Calculate Total Cost</button>}
 
@@ -155,8 +184,8 @@ const Checkout = () => {
                 }
 
 
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
