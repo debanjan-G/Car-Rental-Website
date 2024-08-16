@@ -10,6 +10,7 @@ import { LuFuel } from "react-icons/lu";
 import { Field, Fieldset, Input, Label, Legend, Textarea } from '@headlessui/react'
 import CalenderForm from "./ui/DatePicker"
 import DatePicker from './ui/DatePicker';
+import RentConfirmed from './RentConfirmed';
 
 const Checkout = () => {
 
@@ -20,6 +21,8 @@ const Checkout = () => {
     const [returnTime, setReturnTIme] = useState();
     const [rentDuration, setRentDuration] = useState();
     const [baseRate, setBaseRate] = useState(0);
+
+    const [isConfirmed, setIsConfirmed] = useState(false);
 
 
     useEffect(() => {
@@ -81,8 +84,8 @@ const Checkout = () => {
 
     return (
         <div>
-            <h1 className='text-center text-4xl font-bold'>CHECKOUT PAGE</h1>
-            <div className='flex justify-evenly items-center gap-8 h-screen my-8'>
+            <h1 className='text-center text-4xl font-bold my-4'>CHECKOUT PAGE</h1>
+            <div className='flex justify-evenly items-center gap-8 my-4'>
 
 
                 <div className='flex flex-col items-center justify-center '>
@@ -107,47 +110,50 @@ const Checkout = () => {
                     </div>
                 </div>
 
-                <form className='w-1/3' onSubmit={handleSubmit}>
-                    <Fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg ">
-                        <Legend className="text-xl font-bold text-center">Rent details</Legend>
+                {isConfirmed ? <RentConfirmed /> :
+                    <form className='w-1/3' onSubmit={handleSubmit}>
+                        <Fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg ">
+                            <Legend className="text-xl font-bold text-center">Rent details</Legend>
 
-                        <Field>
-                            <Label className="block">Pickup Date</Label>
-                            <DatePicker/>
-                        </Field>
-
-
-                        <Field>
-                            <Label className="block">Pickup Time</Label>
-                            <Input type='time' className="mt-1 block rounded-md p-2 shadow-md w-full" name="address" required onChange={(e) => setPickupTime(e.target.value)} />
-                        </Field>
-
-                        <Field>
-                            <Label className="block">Return Time</Label>
-                            <Input type='time' className="mt-1 block rounded-md p-2 shadow-md w-full" name="address" required onChange={(e) => setReturnTIme(e.target.value)} />
-                        </Field>
-
-                        <Field>
-                            <Label className="block">Pickup Location</Label>
-                            <Input className="mt-1 block rounded-md p-2 shadow-md w-full" name="pickup-location" placeholder='eg: 123 Main St, Downtown Central' required />                        </Field>
-
-                        <Field>
-                            <Label className="block">Delivery notes (optional)</Label>
-                            <Textarea className="resize-none mt-1 block rounded-md p-2 shadow-md w-full" rows={6} name="notes" />
-                        </Field>
-
-                        {rentDuration ?
-                            <div>
-                                <p>Rent Duration = {rentDuration} hours</p>
-                                <p>Total Cost = ₹{baseRate * rentDuration}</p>
-                                <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Confirm Rent</button>
-                            </div> :
-                            <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Calculate Total Cost</button>}
+                            <Field>
+                                <Label className="block">Pickup Date</Label>
+                                <DatePicker />
+                            </Field>
 
 
+                            <Field>
+                                <Label className="block">Pickup Time</Label>
+                                <Input type='time' className="mt-1 block rounded-md p-2 shadow-md w-full" name="address" required onChange={(e) => setPickupTime(e.target.value)} />
+                            </Field>
 
-                    </Fieldset>
-                </form>
+                            <Field>
+                                <Label className="block">Return Time</Label>
+                                <Input type='time' className="mt-1 block rounded-md p-2 shadow-md w-full" name="address" required onChange={(e) => setReturnTIme(e.target.value)} />
+                            </Field>
+
+                            <Field>
+                                <Label className="block">Pickup Location</Label>
+                                <Input className="mt-1 block rounded-md p-2 shadow-md w-full" name="pickup-location" placeholder='eg: 123 Main St, Downtown Central' required />                        </Field>
+
+                            <Field>
+                                <Label className="block">Delivery notes (optional)</Label>
+                                <Textarea className="resize-none mt-1 block rounded-md p-2 shadow-md w-full" rows={6} name="notes" />
+                            </Field>
+
+                            {rentDuration ?
+                                <div>
+                                    <p>Rent Duration = {rentDuration} hours</p>
+                                    <p>Total Cost = ₹{baseRate * rentDuration}</p>
+                                    <button onClick={() => setIsConfirmed(true)} type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Confirm Rent</button>
+                                </div> :
+                                <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Calculate Total Cost</button>}
+
+
+                        </Fieldset>
+                    </form>
+
+                }
+
 
             </div>
         </div>

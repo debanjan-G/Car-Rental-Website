@@ -13,7 +13,6 @@ import CARS from '@/data/cars';
 const Catalogue = () => {
 
     const [cars, setCars] = useState([]);
-    const [company, setCompany] = useState('');
 
     useEffect(() => {
         // fetch all cars from API
