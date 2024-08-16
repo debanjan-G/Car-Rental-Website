@@ -8,6 +8,8 @@ import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { FaCar } from "react-icons/fa";
 import { LuFuel } from "react-icons/lu";
 import { Field, Fieldset, Input, Label, Legend, Textarea } from '@headlessui/react'
+import CalenderForm from "./ui/DatePicker"
+import DatePicker from './ui/DatePicker';
 
 const Checkout = () => {
 
@@ -80,7 +82,7 @@ const Checkout = () => {
     return (
         <div>
             <h1 className='text-center text-4xl font-bold'>CHECKOUT PAGE</h1>
-            <div className='flex justify-evenly items-center gap-8 h-[85vh] '>
+            <div className='flex justify-evenly items-center gap-8 h-screen my-8'>
 
 
                 <div className='flex flex-col items-center justify-center '>
@@ -110,6 +112,12 @@ const Checkout = () => {
                         <Legend className="text-xl font-bold text-center">Rent details</Legend>
 
                         <Field>
+                            <Label className="block">Pickup Date</Label>
+                            <DatePicker/>
+                        </Field>
+
+
+                        <Field>
                             <Label className="block">Pickup Time</Label>
                             <Input type='time' className="mt-1 block rounded-md p-2 shadow-md w-full" name="address" required onChange={(e) => setPickupTime(e.target.value)} />
                         </Field>
@@ -125,7 +133,7 @@ const Checkout = () => {
 
                         <Field>
                             <Label className="block">Delivery notes (optional)</Label>
-                            <Textarea className="mt-1 block rounded-md p-2 shadow-md w-full" name="notes" />
+                            <Textarea className="resize-none mt-1 block rounded-md p-2 shadow-md w-full" rows={6} name="notes" />
                         </Field>
 
                         {rentDuration ?
