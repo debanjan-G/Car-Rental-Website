@@ -4,7 +4,7 @@ import HeroImage from "../../public/sven-d-a4S6KUuLeoM-unsplash.jpg"
 import Image from 'next/image'
 import { Button } from './ui/Button'
 import Catalogue from './Catalogue'
-import MyLoader from './ui/Loader/MyLoader'
+
 
 const Hero = () => {
 
