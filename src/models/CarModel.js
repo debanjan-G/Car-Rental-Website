@@ -16,9 +16,9 @@ const CarSchema = new mongoose.Schema({
   seatingCapacity: { type: Number, required: true },
   mileage: { type: String, required: true },
   modelYear: { type: Number, required: true },
-  modelType: { type: Number, required: true },
+  modelType: { type: String, required: true },
 });
 
-const Cars = mongoose.models.car || mongoose.model("car", CarSchema);
+const Cars = mongoose.models.car || new mongoose.model("car", CarSchema);
 
 export default Cars;

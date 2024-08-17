@@ -6,6 +6,7 @@ import CarCard from './ui/CarCard';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
 import CARS from '@/data/cars';
+import axios from 'axios';
 
 
 
@@ -15,9 +16,7 @@ const Catalogue = () => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
-        // fetch all cars from API
         setCars(CARS);
-
     }, [])
 
     return (
@@ -25,7 +24,7 @@ const Catalogue = () => {
             <h1 className='font-semibold'>Car Catalogue</h1>
             <p className='font-light'>Explore cars you might like</p>
 
-            <SearchBar setCars={setCars} cars={cars}  />
+            <SearchBar setCars={setCars} cars={cars} />
 
             <div className='w-full flex flex-wrap justify-center'>
 
