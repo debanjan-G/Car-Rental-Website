@@ -7,8 +7,7 @@ const Footer = () => {
             <footer className="flex justify-center row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
                 <div className="flex justify-center col mb-3">
                     <h1 className='text-2xl font-extrabold'>🚗  CarHub</h1>
-                    {/* <p className="text-body-secondary">CarHub {new Date().getFullYear()}</p>
-                    <p className="text-body-secondary">All Rights Reserved ©</p> */}
+                
                 </div>
 
                 <div className="flex items-center flex-col col mb-3">

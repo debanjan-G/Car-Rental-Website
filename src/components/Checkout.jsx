@@ -21,6 +21,12 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+} from "@/components/ui/alert"
+import { Badge } from "@/components/ui/badge"
 import Link from 'next/link';
 import EmptyCheckoutImage from "../../public/what-you-were-looking-was-not-found-search-not-found-concept-illustration-flat-design-eps10-modern-style-graphic-element-for-landing-page-empty-state-ui-infographic-etc-vector.jpg"
 
@@ -89,23 +95,23 @@ const Checkout = () => {
         isCarSelected ? (
             <div>
                 <h1 className='text-center text-4xl font-bold my-4'>CHECKOUT PAGE</h1>
-                <div className='flex justify-evenly items-center gap-8 my-4'>
-                    <div className='flex flex-col items-center justify-center'>
+                <div className='flex flex-wrap justify-evenly items-center gap-8 my-4'>
+                    <div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
                         <h1 className='text-2xl'>{selectedCar.name}</h1>
                         <Image src={selectedCar.image} width={400} height={400} className='object-contain' alt='selected-car' />
 
                         <hr className='bg-red-500' />
 
-                        <div className='flex flex-col gap-4 flex-wrap items-center'>
-                            <p className='flex gap-2'><MdOutlineAirlineSeatReclineNormal className='size-6' /> Seating Capacity - {selectedCar.seatingCapacity}</p>
-                            <p className='flex gap-2'><LuFuel className='size-6' /> Mileage - {selectedCar.mileage}</p>
-                            <p className='flex gap-2'><FaCar className='size-6' /> Class - {selectedCar.modelType}</p>
-                            <p className='flex gap-2'><FaRegCalendarAlt className='size-6' /> Manufacture Year - {selectedCar.modelYear}</p>
+                        <div className='flex flex-wrap gap-4 w-full justify-around items-center'>
+                            <Badge className='w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><MdOutlineAirlineSeatReclineNormal className='size-6' /> Seating Capacity - {selectedCar.seatingCapacity}</Badge>
+                            <Badge className='w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><LuFuel className='size-6' /> Mileage - {selectedCar.mileage}</Badge>
+                            <Badge className='w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><FaCar className='size-6' /> Class - {selectedCar.modelType}</Badge>
+                            <Badge className='w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><FaRegCalendarAlt className='size-6' /> Manufacture Year - {selectedCar.modelYear}</Badge>
                         </div>
                     </div>
 
                     {isConfirmed ? <RentConfirmed /> : (
-                        <form className='w-1/3' onSubmit={handleSubmit}>
+                        <form className='w-full mx-10  md:w-1/2 lg:w-1/3' onSubmit={handleSubmit}>
                             <Fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
                                 <Legend className="text-xl font-bold text-center">Rent details</Legend>
 
@@ -129,10 +135,17 @@ const Checkout = () => {
                                     <Input className="mt-1 block rounded-md p-2 shadow-md w-full" placeholder='eg: 123 Main St, Downtown Central' required />
                                 </Field>
 
+
                                 {rentDuration ? (
                                     <div>
-                                        <p>Rent Duration = {rentDuration} hours</p>
-                                        <p>Total Cost = ₹{baseRate * rentDuration}</p>
+
+                                        <Alert className='mb-4'>
+                                            <AlertTitle> Total Cost = ₹{baseRate * rentDuration}</AlertTitle>
+                                            <AlertDescription>
+                                                Rent Duration = {rentDuration} hours
+                                            </AlertDescription>
+                                        </Alert>
+
 
                                         <AlertDialog>
                                             <AlertDialogTrigger className='w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition'>Confirm Rent</AlertDialogTrigger>

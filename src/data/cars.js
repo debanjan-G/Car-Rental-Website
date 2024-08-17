@@ -6,7 +6,7 @@ const CARS = [
       "https://qph.cf2.quoracdn.net/main-qimg-ddb3a1ff6bf7fd5edf57a8e11d9ba010",
     seatingCapacity: "4",
     mileage: "22 km/l",
-    modelYear: "2023",
+    modelYear: "2022",
     modelType: "Compact Car",
   },
   {
@@ -25,7 +25,7 @@ const CARS = [
     image: "https://pngimg.com/d/suzuki_PNG12294.png",
     seatingCapacity: "5",
     mileage: "23 km/l",
-    modelYear: "2023",
+    modelYear: "2021",
     modelType: "Compact Car",
   },
   {
@@ -35,7 +35,7 @@ const CARS = [
       "https://images.carandbike.com/car-images/colors/maruti-suzuki/baleno/maruti-suzuki-baleno-celestial-blue.png?v=1645703898",
     seatingCapacity: "5",
     mileage: "22 km/l",
-    modelYear: "2023",
+    modelYear: "2022",
     modelType: "Compact Car",
   },
   {
@@ -44,7 +44,7 @@ const CARS = [
     image: "https://pngimg.com/d/hyundai_PNG11239.png",
     seatingCapacity: "5",
     mileage: "20 km/l",
-    modelYear: "2023",
+    modelYear: "2021",
     modelType: "Compact Car",
   },
   {
@@ -63,7 +63,7 @@ const CARS = [
     image: "https://www.pngmart.com/files/22/Hyundai-Verna-PNG-File.png",
     seatingCapacity: "5",
     mileage: "21 km/l",
-    modelYear: "2023",
+    modelYear: "2022",
     modelType: "Sedan",
   },
   {
@@ -82,7 +82,7 @@ const CARS = [
     image: "https://ackodrive-assets.s3.amazonaws.com/media/test_pmag9TZ.png",
     seatingCapacity: "5",
     mileage: "23 km/l",
-    modelYear: "2023",
+    modelYear: "2020",
     modelType: "Compact Car",
   },
   {
@@ -91,7 +91,7 @@ const CARS = [
     image: "https://ackodrive-assets.s3.amazonaws.com/media/test_C9jRoZl.png",
     seatingCapacity: "5",
     mileage: "18 km/l",
-    modelYear: "2023",
+    modelYear: "2022",
     modelType: "SUV",
   },
   {
@@ -111,7 +111,7 @@ const CARS = [
       "https://5.imimg.com/data5/ND/HH/GLADMIN-64213965/mahindra-bolero-slx.png",
     seatingCapacity: "7",
     mileage: "15 km/l",
-    modelYear: "2023",
+    modelYear: "2021",
     modelType: "SUV",
   },
   {
@@ -121,7 +121,7 @@ const CARS = [
       "https://www.carandbike.com/_next/image?url=https%3A%2F%2Fimages.carandbike.com%2Fcar-images%2Fcolors%2Fmahindra%2Fxuv500%2Fmahindra-xuv500-pearl-white.png%3Fv%3D1&w=750&q=75",
     seatingCapacity: "7",
     mileage: "14 km/l",
-    modelYear: "2023",
+    modelYear: "2022",
     modelType: "SUV",
   },
   {
@@ -141,7 +141,7 @@ const CARS = [
       "https://www.pngarts.com/files/4/Honda-Amaze-Transparent-Background-PNG.png",
     seatingCapacity: "5",
     mileage: "18 km/l",
-    modelYear: "2023",
+    modelYear: "2021",
     modelType: "Sedan",
   },
   {
@@ -151,7 +151,7 @@ const CARS = [
       "https://freepngimg.com/save/31957-honda-civic-transparent-picture/550x450",
     seatingCapacity: "5",
     mileage: "17 km/l",
-    modelYear: "2023",
+    modelYear: "2020",
     modelType: "Sedan",
   },
   {
@@ -161,7 +161,7 @@ const CARS = [
       "https://www.vdm.ford.com/content/dam/vdm_ford/live/en_us/ford/nameplate/ecosport/2022/collections/cyp/assetChoosePathLeft.png",
     seatingCapacity: "5",
     mileage: "15 km/l",
-    modelYear: "2023",
+    modelYear: "2022",
     modelType: "SUV",
   },
   {
