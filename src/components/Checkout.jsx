@@ -111,7 +111,7 @@ const Checkout = () => {
                     </div>
 
                     {isConfirmed ? <RentConfirmed /> : (
-                        <form className='w-full mx-10  md:w-1/2 lg:w-1/3' onSubmit={handleSubmit}>
+                        <form className='w-full mx-10  md:w-1/3' onSubmit={handleSubmit}>
                             <Fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
                                 <Legend className="text-xl font-bold text-center">Rent details</Legend>
 
