@@ -5,10 +5,10 @@ import Link from 'next/link'
 
 const RentConfirmed = () => {
     return (
-        <div className='w-1/3 flex flex-col items-center justify-center gap-4'>
-            <div className='p-4 bg-green-400'>
-                <Image src={RentConfirmedImage} alt='rent-confirmed-image' className='object-contain w-64 h-6w-64' />
-            </div>
+        <div className='w-1/3 mx-auto flex flex-col items-center justify-center gap-4'>
+            {/* <div className='p-4 bg-green-400'> */}
+            <Image src={RentConfirmedImage} alt='rent-confirmed-image' className='object-contain w-64 h-6w-64' />
+            {/* </div> */}
             <div>
                 <h1 className='text-center'>Thank You! 🎉</h1>
                 <p className='font-light text-center text-lg'>Your car rental has been successfully confirmed!

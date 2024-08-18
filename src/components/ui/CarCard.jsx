@@ -17,7 +17,7 @@ const CarCard = ({ name, carClass, cityMileage, year, seats, image }) => {
 
 
     return (
-        <div className='bg-gray-200 rounded-md text-black m-4 flex flex-col items-center  sm:basis-1/2 md:basis-1/3 lg:basis-1/4 hover:scale-105 transition duration-200 '>
+        <div className='bg-indigo-200 rounded-md text-black m-4 flex flex-col items-center  sm:basis-1/2 md:basis-1/3 lg:basis-1/4 hover:scale-105 transition duration-200 shadow-lg'>
 
             <div className='w-full h-50 p-4'>
                 <Image src={image} alt={name + " image"} width={300} height={300} className='w-fit h-fit object-cover ' />
@@ -38,7 +38,7 @@ const CarCard = ({ name, carClass, cityMileage, year, seats, image }) => {
 
                 </div>
                 <div className='text-center'>
-                    <button onClick={navigateToCheckout} className='bg-blue-300 text-blue-950 p-2 rounded-full w-36  hover:bg-blue-500 hover:text-white duration-200 transition no-underline'>Rent Car</button>
+                    <button onClick={navigateToCheckout} className='bg-slate-900 text-white p-2 rounded-full w-36  hover:bg-blue-500 duration-200 transition no-underline'>Rent Car</button>
                 </div>
 
             </div>

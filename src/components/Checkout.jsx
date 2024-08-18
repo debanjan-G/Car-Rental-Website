@@ -1,15 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import CARS from '@/data/cars';
 import Image from 'next/image';
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
-import { FaCar } from "react-icons/fa";
-import { LuFuel } from "react-icons/lu";
-import { Field, Fieldset, Input, Label, Legend } from '@headlessui/react'
+
 import DatePicker from './ui/DatePicker';
 import RentConfirmed from './RentConfirmed';
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -29,6 +26,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import Link from 'next/link';
 import EmptyCheckoutImage from "../../public/what-you-were-looking-was-not-found-search-not-found-concept-illustration-flat-design-eps10-modern-style-graphic-element-for-landing-page-empty-state-ui-infographic-etc-vector.jpg"
+import SelectedCar from './SelectedCar';
 
 const Checkout = () => {
     const searchParams = useSearchParams();
@@ -41,6 +39,8 @@ const Checkout = () => {
 
     const [isConfirmed, setIsConfirmed] = useState(false);
     const [isCarSelected, setIsCarSelected] = useState(searchParams.size > 0);
+    const [showCarDetails, setShowCarDetails] = useState(false);
+    const carDetailsRef = useRef();
 
     useEffect(() => {
         if (isCarSelected) {
@@ -91,95 +91,119 @@ const Checkout = () => {
         setRentDuration(hoursCeil);
     }
 
+    const handleCarDetailsShow = (e) => {
+        setShowCarDetails(true);
+
+        carDetailsRef.current.scrollIntoView({ behaviour: 'smooth' })
+    }
+
     return (
         isCarSelected ? (
             <div>
                 <h1 className='text-center text-4xl font-bold my-4'>CHECKOUT PAGE</h1>
-                <div className='flex flex-wrap justify-evenly items-center gap-8 my-4'>
-                    <div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
-                        <h1 className='text-2xl'>{selectedCar.name}</h1>
-                        <Image src={selectedCar.image} width={400} height={400} className='object-contain' alt='selected-car' />
 
-                        <hr className='bg-red-500' />
-
-                        <div className='flex flex-wrap gap-4 w-full justify-around items-center'>
-                            <Badge className='w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><MdOutlineAirlineSeatReclineNormal className='size-6' /> Seating Capacity - {selectedCar.seatingCapacity}</Badge>
-                            <Badge className='w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><LuFuel className='size-6' /> Mileage - {selectedCar.mileage}</Badge>
-                            <Badge className='w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><FaCar className='size-6' /> Class - {selectedCar.modelType}</Badge>
-                            <Badge className='w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><FaRegCalendarAlt className='size-6' /> Manufacture Year - {selectedCar.modelYear}</Badge>
-                        </div>
+                {isConfirmed ?
+                    // div showing Rent Confirmed Component
+                    <div className='text-center p-10 w-full mx-auto'>
+                        <RentConfirmed />
+                        <button className='py-2 px-4 my-4 bg-slate-500 hover:bg-slate-700 transition duration-200 text-white rounded-md mx-auto text-center' onClick={handleCarDetailsShow}>Check Rent Details</button>
                     </div>
+                    : (
+                        // div showing Car Details and Rent Form
+                        <div className='flex flex-wrap justify-evenly items-center gap-8 my-4'>
 
-                    {isConfirmed ? <RentConfirmed /> : (
-                        <form className='w-full mx-10  md:w-1/3' onSubmit={handleSubmit}>
-                            <Fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
-                                <Legend className="text-xl font-bold text-center">Rent details</Legend>
+                            <SelectedCar name={selectedCar.name} image={selectedCar.image} seatingCapacity={selectedCar.seatingCapacity} mileage={selectedCar.mileage} modelType={selectedCar.modelType} modelYear={selectedCar.modelYear} />
 
-                                <Field>
-                                    <Label className="block">Pickup Date</Label>
-                                    <DatePicker />
-                                </Field>
+                            <form className='w-full mx-10  md:w-1/3' onSubmit={handleSubmit}>
+                                <fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
+                                    <legend className="text-xl font-bold text-center">Rent details</legend>
 
-                                <Field>
-                                    <Label className="block">Pickup Time</Label>
-                                    <Input type='time' className="mt-1 block rounded-md p-2 shadow-md w-full" required onChange={(e) => setPickupTime(e.target.value)} />
-                                </Field>
-
-                                <Field>
-                                    <Label className="block">Return Time</Label>
-                                    <Input type='time' className="mt-1 block rounded-md p-2 shadow-md w-full" required onChange={(e) => setReturnTime(e.target.value)} />
-                                </Field>
-
-                                <Field>
-                                    <Label className="block">Pickup Location</Label>
-                                    <Input className="mt-1 block rounded-md p-2 shadow-md w-full" placeholder='eg: 123 Main St, Downtown Central' required />
-                                </Field>
-
-
-                                {rentDuration ? (
                                     <div>
-
-                                        <Alert className='mb-4'>
-                                            <AlertTitle> Total Cost = ₹{baseRate * rentDuration}</AlertTitle>
-                                            <AlertDescription>
-                                                Rent Duration = {rentDuration} hours
-                                            </AlertDescription>
-                                        </Alert>
-
-
-                                        <AlertDialog>
-                                            <AlertDialogTrigger className='w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition'>Confirm Rent</AlertDialogTrigger>
-                                            <AlertDialogContent>
-                                                <AlertDialogHeader>
-                                                    <AlertDialogTitle>You're almost ready to hit the road!</AlertDialogTitle>
-                                                    <AlertDialogDescription>
-                                                        By confirming, you agree to the rental terms and conditions. Your selected car will be reserved for you, and the rental process will begin. Please review your details carefully before proceeding.
-                                                    </AlertDialogDescription>
-                                                </AlertDialogHeader>
-                                                <AlertDialogFooter className='flex items-center'>
-                                                    <AlertDialogCancel className='my-0 bg-red-500 text-white hover:bg-red-400'>Cancel</AlertDialogCancel>
-                                                    <AlertDialogAction className='my-0 bg-blue-500' onClick={() => setIsConfirmed(true)}>Confirm Rent</AlertDialogAction>
-                                                </AlertDialogFooter>
-                                            </AlertDialogContent>
-                                        </AlertDialog>
+                                        <label className="block">Pickup Date</label>
+                                        <DatePicker />
                                     </div>
-                                ) : (
-                                    <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Calculate Total Cost</button>
-                                )}
-                            </Fieldset>
-                        </form>
+
+                                    <div>
+                                        <label className="block">Pickup Time</label>
+                                        <input
+                                            type='time'
+                                            className="mt-1 block rounded-md p-2 shadow-md w-full"
+                                            required
+                                            onChange={(e) => setPickupTime(e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block">Return Time</label>
+                                        <input
+                                            type='time'
+                                            className="mt-1 block rounded-md p-2 shadow-md w-full"
+                                            required
+                                            onChange={(e) => setReturnTime(e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block">Pickup Location</label>
+                                        <input
+                                            className="mt-1 block rounded-md p-2 shadow-md w-full"
+                                            placeholder='eg: 123 Main St, Downtown Central'
+                                            required
+                                        />
+                                    </div>
+
+                                    {rentDuration ? (
+                                        <div>
+                                            <Alert className='mb-4'>
+                                                <AlertTitle> Total Cost = ₹{baseRate * rentDuration}</AlertTitle>
+                                                <AlertDescription>
+                                                    Rent Duration = {rentDuration} hours
+                                                </AlertDescription>
+                                            </Alert>
+
+                                            <AlertDialog>
+                                                <AlertDialogTrigger className='w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition'>Confirm Rent</AlertDialogTrigger>
+                                                <AlertDialogContent>
+                                                    <AlertDialogHeader>
+                                                        <AlertDialogTitle>You're almost ready to hit the road!</AlertDialogTitle>
+                                                        <AlertDialogDescription>
+                                                            By confirming, you agree to the rental terms and conditions. Your selected car will be reserved for you, and the rental process will begin. Please review your details carefully before proceeding.
+                                                        </AlertDialogDescription>
+                                                    </AlertDialogHeader>
+                                                    <AlertDialogFooter className='flex items-center'>
+                                                        <AlertDialogCancel className='my-0 bg-red-500 text-white hover:bg-red-400'>Cancel</AlertDialogCancel>
+                                                        <AlertDialogAction className='my-0 bg-blue-500' onClick={() => setIsConfirmed(true)}>Confirm Rent</AlertDialogAction>
+                                                    </AlertDialogFooter>
+                                                </AlertDialogContent>
+                                            </AlertDialog>
+                                        </div>
+                                    ) : (
+                                        <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Calculate Total Cost</button>
+                                    )}
+                                </fieldset>
+                            </form>
+                        </div>
                     )}
+
+                {/* div showing Rent Details */}
+                <div ref={carDetailsRef} className={`${!showCarDetails && 'invisible'} flex items-center justify-evenly bg-blue-200 p-10 w-fit mx-auto rounded-lg shadow-lg`}>
+                    {showCarDetails &&
+
+                        <SelectedCar name={selectedCar.name} image={selectedCar.image} seatingCapacity={selectedCar.seatingCapacity} mileage={selectedCar.mileage} modelType={selectedCar.modelType} modelYear={selectedCar.modelYear} />
+                    }
+                    <Badge className='p-4 text-lg'>Rent Duration - {rentDuration} Hours</Badge>
+                    <Badge className='p-4 text-lg'>Rent Cost - ₹{baseRate * rentDuration}</Badge>
+
                 </div>
+
             </div>
         ) : (
             <div className='p-4 text-center'>
-
                 <Image src={EmptyCheckoutImage} alt='empty-checkout' className='object-contain size-80 mx-auto ' />
                 <h1 className='font-bold'>Oops! Please select a car first</h1>
                 <p className='font-light text-lg mb-4 '>It looks like you haven't selected a car yet. Please choose a car first to proceed with the checkout.</p>
                 <Link href='/' className='my-4 p-3 no-underline text-lg bg-blue-500 hover:bg-blue-700 duration-200 transition text-white rounded-md'>Browse Cars</Link>
             </div>
-
         )
     )
 }
