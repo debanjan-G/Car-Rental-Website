@@ -86,7 +86,7 @@ const Checkout = () => {
 
         // Calculate the difference in hours
         const differenceInHours = (returnDate - pickupDate) / (1000 * 60 * 60);
-        const hoursCeil = Math.ceil(differenceInHours);
+        const hoursCeil = Math.abs(Math.ceil(differenceInHours));
 
         setRentDuration(hoursCeil);
     }
