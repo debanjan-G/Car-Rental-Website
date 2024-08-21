@@ -1,25 +1,28 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Field, Input, Label } from '@headlessui/react'
 import clsx from 'clsx'
 import axios from 'axios'
 import Spinner from './Spinner/Spinner'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const PaymentForm = () => {
 
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const searchParams = useSearchParams(); //contains cost of rent
+
 
     // Form Data States
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [amount, setAmount] = useState("");
 
-
+    useEffect(() => {
+        setAmount(searchParams.get('cost'));
+    }, [])
 
 
     const generateToken = async () => {
@@ -29,7 +32,6 @@ const PaymentForm = () => {
             setToken(response.data.res.access_token);
         } catch (error) {
             console.log("ERROR -> ", error);
-
         }
         finally {
             setIsLoading(false);
@@ -41,15 +43,13 @@ const PaymentForm = () => {
         try {
             e.preventDefault();
 
+            console.log("AMOUNT = ", amount);
+
             const formData = { name, email, number, amount };
 
             const response = await axios.post('http://localhost:3000/api/payment-request', { formData, accessToken: token })
-
             console.log(response);
-
-
             router.push(response.data.redirectURL)
-
 
         } catch (error) {
 
@@ -58,8 +58,6 @@ const PaymentForm = () => {
 
     return (
         <div className='w-full'>
-
-
 
             <div className='bg-green-200 p-3 text-center w-1/2 mx-auto rounded-md my-4 '>
                 {token != '' ?
@@ -109,6 +107,7 @@ const PaymentForm = () => {
                     <Field>
                         <Label className="text-sm/6 font-medium text-black">Amount (in ₹)</Label>
                         <Input required type='number'
+                            readOnly
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
                             className={clsx(

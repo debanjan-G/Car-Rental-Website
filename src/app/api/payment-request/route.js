@@ -36,7 +36,7 @@ export async function POST(req) {
       redirectURL: response.data.longurl,
     });
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     return NextResponse.json(
       { success: false, msg: "Something Went Wrong" },
       { status: 500 }

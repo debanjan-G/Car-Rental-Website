@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import CARS from '@/data/cars';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import DatePicker from './ui/DatePicker';
 import RentConfirmed from './RentConfirmed';
@@ -30,12 +31,13 @@ import SelectedCar from './SelectedCar';
 
 const Checkout = () => {
     const searchParams = useSearchParams();
-
+    const router = useRouter();
     const [selectedCar, setSelectedCar] = useState({});
     const [pickupTime, setPickupTime] = useState('');
     const [returnTime, setReturnTime] = useState('');
     const [rentDuration, setRentDuration] = useState(null);
-    const [baseRate, setBaseRate] = useState(0);
+    // const [baseRate, setBaseRate] = useState(0);
+    const [cost, setCost] = useState(0);
 
     const [isConfirmed, setIsConfirmed] = useState(false);
     const [isCarSelected, setIsCarSelected] = useState(searchParams.size > 0);
@@ -43,6 +45,9 @@ const Checkout = () => {
     const carDetailsRef = useRef();
 
     useEffect(() => {
+
+        window.scrollTo(0, 0); // Scroll to the top of the page
+
         if (isCarSelected) {
             const carName = searchParams.get('car');
             const fetchedCar = CARS.find(car => car.name === carName);
@@ -69,15 +74,14 @@ const Checkout = () => {
                         rate = 300;
                         break;
                 }
-                setBaseRate(rate);
+                setCost(rate);
             }
         }
+
     }, [isCarSelected, searchParams]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("PICKUP TIME: ", pickupTime);
-        console.log("RETURN TIME: ", returnTime);
 
         // Convert times to Date objects (using today's date for both)
         const today = new Date().toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
@@ -89,11 +93,11 @@ const Checkout = () => {
         const hoursCeil = Math.abs(Math.ceil(differenceInHours));
 
         setRentDuration(hoursCeil);
+        setCost(prev => prev * hoursCeil)
     }
 
     const handleCarDetailsShow = (e) => {
         setShowCarDetails(true);
-
         carDetailsRef.current.scrollIntoView({ behaviour: 'smooth' })
     }
 
@@ -153,31 +157,20 @@ const Checkout = () => {
                                     </div>
 
                                     {rentDuration ? (
-                                        <Link href='payment-form'>Proceed to Payment</Link>
-                                        /* <div>
+
+                                        <div className='w-full'>
                                             <Alert className='mb-4'>
-                                                <AlertTitle> Total Cost = ₹{baseRate * rentDuration}</AlertTitle>
+                                                <AlertTitle> Total Cost = ₹{cost}</AlertTitle>
                                                 <AlertDescription>
                                                     Rent Duration = {rentDuration} hours
                                                 </AlertDescription>
                                             </Alert>
 
-                                            <AlertDialog>
-                                                <AlertDialogTrigger className='w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition'>Confirm Rent</AlertDialogTrigger>
-                                                <AlertDialogContent>
-                                                    <AlertDialogHeader>
-                                                        <AlertDialogTitle>You're almost ready to hit the road!</AlertDialogTitle>
-                                                        <AlertDialogDescription>
-                                                            By confirming, you agree to the rental terms and conditions. Your selected car will be reserved for you, and the rental process will begin. Please review your details carefully before proceeding.
-                                                        </AlertDialogDescription>
-                                                    </AlertDialogHeader>
-                                                    <AlertDialogFooter className='flex items-center'>
-                                                        <AlertDialogCancel className='my-0 bg-red-500 text-white hover:bg-red-400'>Cancel</AlertDialogCancel>
-                                                        <AlertDialogAction className='my-0 bg-blue-500' onClick={() => setIsConfirmed(true)}>Confirm Rent</AlertDialogAction>
-                                                    </AlertDialogFooter>
-                                                </AlertDialogContent>
-                                            </AlertDialog>
-                                        </div> */
+                                            <Link href={`payment-form?cost=${cost}`} className='my-0 bg-blue-500 no-underline text-white px-4 py-2 rounded-sm w-full'>Proceed to Payment</Link>
+
+
+
+                                        </div>
                                     ) : (
                                         <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Calculate Total Cost</button>
                                     )}
@@ -193,7 +186,7 @@ const Checkout = () => {
                         <SelectedCar name={selectedCar.name} image={selectedCar.image} seatingCapacity={selectedCar.seatingCapacity} mileage={selectedCar.mileage} modelType={selectedCar.modelType} modelYear={selectedCar.modelYear} />
                     }
                     <Badge className='p-4 text-lg'>Rent Duration - {rentDuration} Hours</Badge>
-                    <Badge className='p-4 text-lg'>Rent Cost - ₹{baseRate * rentDuration}</Badge>
+                    <Badge className='p-4 text-lg'>Rent Cost - ₹{cost}</Badge>
 
                 </div>
 
