@@ -46,7 +46,8 @@ const Catalogue = () => {
             <p className='font-light'>Explore cars you might like</p>
 
             <SearchBar setCars={setCars} />
-            <button onClick={() => setFetchToggler(prev => !prev)} className='bg-slate-950 text-white rounded-md py-2 px-4 my-4'>Show all</button>
+
+
 
 
             {loading ? <MyLoader /> :
@@ -59,7 +60,7 @@ const Catalogue = () => {
                                 <CarCard key={car.id} name={car.name} carClass={car.modelType} year={car.modelYear} cityMileage={car.mileage} seats={car.seatingCapacity} image={car.image} />)
                         )
                         :
-                        <div className='flex h-full items-center justify-center'>
+                        <div className='flex flex-col h-full items-center justify-center'>
                             <Alert className='w-1/2 bg-red-100 mt-8'>
 
                                 <AlertTitle className='text-2xl font-bold'>
@@ -70,6 +71,7 @@ const Catalogue = () => {
                                     Sorry, we don't have any cars matching your search available for rent right now. Please check back later or explore other options!
                                 </AlertDescription>
                             </Alert>
+                            <button onClick={() => setFetchToggler(prev => !prev)} className='w-1/2 bg-slate-950 text-white rounded-md py-2 px-4 my-4'>Show all</button>
                         </div>
 
                     }
