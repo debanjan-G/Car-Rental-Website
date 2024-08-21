@@ -153,7 +153,8 @@ const Checkout = () => {
                                     </div>
 
                                     {rentDuration ? (
-                                        <div>
+                                        <Link href='payment-form'>Proceed to Payment</Link>
+                                        /* <div>
                                             <Alert className='mb-4'>
                                                 <AlertTitle> Total Cost = ₹{baseRate * rentDuration}</AlertTitle>
                                                 <AlertDescription>
@@ -176,7 +177,7 @@ const Checkout = () => {
                                                     </AlertDialogFooter>
                                                 </AlertDialogContent>
                                             </AlertDialog>
-                                        </div>
+                                        </div> */
                                     ) : (
                                         <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Calculate Total Cost</button>
                                     )}
