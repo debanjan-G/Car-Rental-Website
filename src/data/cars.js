@@ -127,8 +127,7 @@ const CARS = [
   {
     // id: 14,
     name: "Honda City",
-    image:
-      "https://www.pngkey.com/png/full/35-351216_vti-l-honda-city-red-2017.png",
+    image: "https://pngimg.com/d/honda_PNG10355.png",
     seatingCapacity: "5",
     mileage: "17 km/l",
     modelYear: "2023",

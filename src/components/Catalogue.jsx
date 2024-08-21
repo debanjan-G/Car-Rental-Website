@@ -16,6 +16,8 @@ const Catalogue = () => {
 
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(false)
+    const [fetchToggler, setFetchToggler] = useState(false)
+    //everytime fetchToggler changes, all cars will be fetched
 
     useEffect(() => {
         const fetchAllCars = async () => {
@@ -33,20 +35,25 @@ const Catalogue = () => {
 
         fetchAllCars()
 
-    }, [])
+    }, [fetchToggler])
+
+
+
 
     return (
         <div className='my-10 p-4'>
             <h1 className='font-semibold'>Car Catalogue</h1>
             <p className='font-light'>Explore cars you might like</p>
 
-            <SearchBar setCars={setCars} cars={cars} />
+            <SearchBar setCars={setCars} />
+            <button onClick={() => setFetchToggler(prev => !prev)} className='bg-slate-950 text-white rounded-md py-2 px-4 my-4'>Show all</button>
+
 
             {loading ? <MyLoader /> :
 
                 <div className='w-full flex flex-wrap justify-center'>
 
-                    {cars.length > 0 ?
+                    {(cars.length > 0) ?
                         (
                             cars.map((car) =>
                                 <CarCard key={car.id} name={car.name} carClass={car.modelType} year={car.modelYear} cityMileage={car.mileage} seats={car.seatingCapacity} image={car.image} />)

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react'
 import { companies } from '@/car_companies'
 
-const CompanyMenu = ({ company, setCompany }) => {
+const CompanyMenu = ({  setCompany }) => {
     const [query, setQuery] = useState('');
 
     const filteredCompanies = query

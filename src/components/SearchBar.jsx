@@ -15,7 +15,7 @@ const SearchBar = ({ setCars }) => {
             e.preventDefault();
             console.log(searchedCarCompany);
 
-            // update the state
+            // update the state (show only those cars as searched by the customer)
             const updatedCars = CARS.filter((company) => company.name.includes(searchedCarCompany))
 
             console.log("UPDATED CARS = ", updatedCars);
@@ -35,7 +35,7 @@ const SearchBar = ({ setCars }) => {
             <div className='flex gap-2'>
 
 
-                <CompanyMenu company={searchedCarCompany} setCompany={setSearchedCarCompany} />
+                <CompanyMenu setCompany={setSearchedCarCompany} />
                 <button type='submit' className='hover:scale-105 transition duration-200'>  <SearchIcon />
                 </button>
 
