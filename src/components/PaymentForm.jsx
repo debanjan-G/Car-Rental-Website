@@ -57,9 +57,6 @@ const PaymentForm = () => {
 
             console.log(response);
 
-            //saving the paymentID in LocalStorage
-            localStorage.setItem("paymentID", response.data.paymentID)
-
             // Convert URL object to string before passing to router.push
             router.push(response.data.redirectURL);
 

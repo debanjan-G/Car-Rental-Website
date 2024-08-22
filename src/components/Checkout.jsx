@@ -4,21 +4,8 @@ import { useSearchParams } from 'next/navigation'
 import CARS from '@/data/cars';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
 import DatePicker from './ui/DatePicker';
 import RentConfirmed from './RentConfirmed';
-
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import {
     Alert,
     AlertDescription,
