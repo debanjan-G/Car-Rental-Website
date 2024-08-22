@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react'
 import { companies } from '@/car_companies'
 
-const CompanyMenu = ({  setCompany }) => {
+const CompanyMenu = ({ setCompany }) => {
     const [query, setQuery] = useState('');
 
     const filteredCompanies = query
@@ -18,7 +18,7 @@ const CompanyMenu = ({  setCompany }) => {
     }
 
     return (
-        <div className='opacity-100 w-1/2'>
+        <div className='opacity-100 w-full md:w-1/2'>
             <Combobox value={query} onChange={handleOptionSelect}>
                 <ComboboxInput
                     autoComplete='off'

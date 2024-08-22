@@ -17,7 +17,7 @@ const CarCard = ({ name, carClass, cityMileage, year, seats, image }) => {
 
 
     return (
-        <div className='bg-blue-100 rounded-md text-black m-4 flex flex-col items-center  sm:basis-1/2 md:basis-1/3 lg:basis-1/4 hover:scale-105 transition duration-200 shadow-lg'>
+        <div className='bg-teal-100 rounded-md text-black sm:my-4 sm:mx-2 m-4 flex flex-col items-center  sm:basis-1/2 md:basis-1/3 lg:basis-1/4 hover:scale-105 transition duration-200 shadow-lg'>
 
             <div className='w-full h-50 p-4'>
                 <Image src={image} alt={name + " image"} width={300} height={300} className='w-fit h-fit object-cover ' />
@@ -26,7 +26,7 @@ const CarCard = ({ name, carClass, cityMileage, year, seats, image }) => {
             <div className='p-4'>
                 <h1 className='text-2xl text-center'>{name}</h1>
                 <p className='text-slate-700 font-light text-center text-xl'>{carClass}</p>
-                <div className='flex items-center justify-evenly gap-4'>
+                <div className='text-sm md:text-xl flex items-center justify-evenly gap-4'>
 
                     <p> <FaRegCalendarAlt className='inline' />  {year}</p>
                     <p><MdOutlineAirlineSeatReclineNormal className='inline' /> {seats}</p>

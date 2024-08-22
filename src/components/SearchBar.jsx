@@ -33,10 +33,9 @@ const SearchBar = ({ setCars }) => {
     return (
         <form onSubmit={handleFormSubmit}>
             <div className='flex gap-2'>
-
-
                 <CompanyMenu setCompany={setSearchedCarCompany} />
-                <button type='submit' className='hover:scale-105 transition duration-200'>  <SearchIcon />
+                <button type='submit' className='hover:scale-105 transition duration-200'>
+                    <SearchIcon />
                 </button>
 
 

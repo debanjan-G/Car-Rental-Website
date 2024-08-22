@@ -8,6 +8,7 @@ import { Terminal } from "lucide-react"
 // import CARS from '@/data/cars';
 import axios from 'axios';
 import MyLoader from './ui/Loader/MyLoader';
+import PageButton from './ui/PageButton';
 
 
 
@@ -17,6 +18,7 @@ const Catalogue = () => {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(false)
     const [fetchToggler, setFetchToggler] = useState(false)
+    const [pages, setPages] = useState([])
     //everytime fetchToggler changes, all cars will be fetched
 
     useEffect(() => {
@@ -35,7 +37,20 @@ const Catalogue = () => {
 
         fetchAllCars()
 
+
     }, [fetchToggler])
+
+    useEffect(() => {
+        let pageNo = 1;
+        const newPages = []; // Create a new array to store the pages
+
+        for (let i = 1; i <= cars.length; i += 6) {
+            newPages.push(pageNo);
+            pageNo++;
+        }
+
+        setPages(newPages); // Set the new array to state after the loop finishes
+    }, [cars.length])
 
 
 
@@ -61,7 +76,7 @@ const Catalogue = () => {
                         )
                         :
                         <div className='flex flex-col h-full items-center justify-center'>
-                            <Alert className='w-1/2 bg-red-100 mt-8'>
+                            <Alert className='w-full md:w-1/2 bg-red-100 mt-8'>
 
                                 <AlertTitle className='text-2xl font-bold'>
                                     <Terminal className="h-4 w-4 inline m-2" />
@@ -78,6 +93,9 @@ const Catalogue = () => {
 
 
                 </div>}
+            <div className='flex justify-center gap-2 mt-10'>
+                {pages.map((page) => <PageButton key={page} pageNo={page} />)}
+            </div>
 
         </div>
     )
