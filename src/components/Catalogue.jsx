@@ -57,7 +57,7 @@ const Catalogue = () => {
                     {(cars.length > 0) ?
                         (
                             cars.map((car) =>
-                                <CarCard key={car.id} name={car.name} carClass={car.modelType} year={car.modelYear} cityMileage={car.mileage} seats={car.seatingCapacity} image={car.image} />)
+                                <CarCard key={car._id} name={car.name} carClass={car.modelType} year={car.modelYear} cityMileage={car.mileage} seats={car.seatingCapacity} image={car.image} />)
                         )
                         :
                         <div className='flex flex-col h-full items-center justify-center'>

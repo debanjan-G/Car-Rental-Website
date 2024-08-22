@@ -4,9 +4,9 @@ import axios from "axios";
 export async function POST(req) {
   try {
     const reqBody = await req.json();
-    const { name, email, number, amount } = reqBody.formData;
+    console.log("REQ BODY = ", reqBody);
 
-    console.log(name, email, number, amount, reqBody.accessToken);
+    const { name, email, number, amount } = reqBody.formData;
 
     const body = new URLSearchParams({
       allow_repeated_payments: false,
@@ -16,8 +16,9 @@ export async function POST(req) {
       buyer_name: name,
       email,
       phone: number,
-      redirect_url: "http://localhost:3000/check-payment-status",
+      redirect_url: `http://localhost:3000/check-payment-status?token=${reqBody.accessToken}`,
     });
+
 
     const response = await axios.post(
       "https://test.instamojo.com/v2/payment_requests/",
@@ -31,12 +32,15 @@ export async function POST(req) {
       }
     );
 
+    console.log("RESPONSE = ", response);
+
     return NextResponse.json({
       success: true,
+      paymentID: response.data.id,
       redirectURL: response.data.longurl,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return NextResponse.json(
       { success: false, msg: "Something Went Wrong" },
       { status: 500 }

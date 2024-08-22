@@ -21,6 +21,10 @@ const PaymentForm = () => {
     const [amount, setAmount] = useState("");
 
     useEffect(() => {
+        console.log("Token state after update:", token);
+    }, [token]);
+
+    useEffect(() => {
         setAmount(searchParams.get('cost'));
     }, [])
 
@@ -29,6 +33,8 @@ const PaymentForm = () => {
         try {
             setIsLoading(true)
             const response = await axios.get('http://localhost:3000/api/generate-token')
+            // console.log(response.data);
+
             setToken(response.data.res.access_token);
         } catch (error) {
             console.log("ERROR -> ", error);
@@ -43,13 +49,19 @@ const PaymentForm = () => {
         try {
             e.preventDefault();
 
-            console.log("AMOUNT = ", amount);
-
             const formData = { name, email, number, amount };
 
+            console.log("TOKEN = ", token);
+
             const response = await axios.post('http://localhost:3000/api/payment-request', { formData, accessToken: token })
+
             console.log(response);
-            router.push(response.data.redirectURL)
+
+            //saving the paymentID in LocalStorage
+            localStorage.setItem("paymentID", response.data.paymentID)
+
+            // Convert URL object to string before passing to router.push
+            router.push(response.data.redirectURL);
 
         } catch (error) {
 
