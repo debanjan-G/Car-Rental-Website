@@ -21,6 +21,10 @@ const Catalogue = () => {
     const [pages, setPages] = useState([])
     //everytime fetchToggler changes, all cars will be fetched
 
+    //pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const [carsPerPage, setCarsPerPage] = useState(6);
+
     useEffect(() => {
         const fetchAllCars = async () => {
             try {
@@ -40,6 +44,8 @@ const Catalogue = () => {
 
     }, [fetchToggler])
 
+
+    //dynamically calculating the number of pages needed to display the cars, with 6 cars per page
     useEffect(() => {
         let pageNo = 1;
         const newPages = []; // Create a new array to store the pages
@@ -53,6 +59,8 @@ const Catalogue = () => {
     }, [cars.length])
 
 
+    const lastCarIndex = currentPage * carsPerPage;
+    const firstCarIndex = lastCarIndex - carsPerPage;
 
 
     return (
@@ -62,16 +70,13 @@ const Catalogue = () => {
 
             <SearchBar setCars={setCars} />
 
-
-
-
             {loading ? <MyLoader /> :
 
                 <div className='w-full flex flex-wrap justify-center'>
 
                     {(cars.length > 0) ?
                         (
-                            cars.map((car) =>
+                            cars.slice(firstCarIndex, lastCarIndex).map((car) =>
                                 <CarCard key={car._id} name={car.name} carClass={car.modelType} year={car.modelYear} cityMileage={car.mileage} seats={car.seatingCapacity} image={car.image} />)
                         )
                         :
@@ -94,7 +99,7 @@ const Catalogue = () => {
 
                 </div>}
             <div className='flex justify-center gap-2 mt-10'>
-                {pages.map((page) => <PageButton key={page} pageNo={page} />)}
+                {pages.map((page) => <PageButton setCurrentPage={setCurrentPage} currentPage={currentPage} key={page} pageNo={page} />)}
             </div>
 
         </div>
