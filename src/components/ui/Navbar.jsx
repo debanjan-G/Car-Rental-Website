@@ -3,6 +3,8 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Tab, TabGroup, TabList } from '@headlessui/react'
+import Image from 'next/image'
+import Logo from "../../../public/logo.jpg"
 
 const Navbar = () => {
     const pathname = usePathname()
@@ -13,9 +15,13 @@ const Navbar = () => {
     return (
         <header className='flex justify-between items-center px-6 md:px-16 py-4'>
 
-            <Link href="/" className='no-underline text-black font-extrabold text-xl md:text-2xl'>
-                <h1 className='font-extrabold text-sm md:text-2xl m-0'> 🚗  CarHub</h1>
-            </Link>
+            <div className='flex items-center'>
+                <Link href="/" className='no-underline text-black font-extrabold text-xl md:text-2xl  '>
+                    <h1 className='font-extrabold text-sm md:text-2xl m-0'> UrbanDrive</h1>
+
+                </Link>
+                <Image src={Logo} alt='urbandrive-logo' className=' object-contain size-20' />
+            </div>
 
             <TabGroup>
                 <TabList className="flex gap-1 md:gap-4">

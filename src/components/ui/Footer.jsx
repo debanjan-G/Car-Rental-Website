@@ -1,13 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import logo from "../../../public/logo.jpg"
 
 const Footer = () => {
     return (
         <div className="container ">
             <footer className="flex justify-center row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
                 <div className="flex justify-center col mb-3">
-                    <h1 className='text-2xl font-extrabold'>🚗  CarHub</h1>
-                
+                    <div className='flex items-center'>
+                        <h1 className='font-extrabold text-sm md:text-2xl m-0'> UrbanDrive</h1>
+                        <Image src={logo} alt='urbandrive-logo' className=' object-contain size-20' />
+                    </div>
+
                 </div>
 
                 <div className="flex items-center flex-col col mb-3">
@@ -46,7 +51,7 @@ const Footer = () => {
             </footer >
 
             <div className='mx-auto flex flex-wrap justify-center gap-4'>
-                <p className='text-slate-600'>©2024 CarHub. All rights reserved</p>
+                <p className='text-slate-600'>©2024 UrbanDrive. All rights reserved</p>
                 <div className='flex gap-4'>
                     <Link href='/' className='no-underline text-slate-600'>Privacy Policy</Link>
                     <Link href='/' className='no-underline text-slate-600'>Terms & Conditions</Link>

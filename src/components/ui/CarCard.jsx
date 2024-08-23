@@ -25,8 +25,8 @@ const CarCard = ({ name, carClass, cityMileage, year, seats, image }) => {
 
             <div className='p-4'>
                 <h1 className='text-2xl text-center'>{name}</h1>
-                <p className='text-slate-700 font-light text-center text-xl'>{carClass}</p>
-                <div className='text-sm md:text-xl flex items-center justify-evenly gap-4'>
+                <p className='text-slate-700 font-light text-center text-base my-2 md:text-lg'>{carClass}</p>
+                <div className='text-sm md:text-base mb-4 flex items-center justify-evenly gap-4'>
 
                     <p> <FaRegCalendarAlt className='inline' />  {year}</p>
                     <p><MdOutlineAirlineSeatReclineNormal className='inline' /> {seats}</p>

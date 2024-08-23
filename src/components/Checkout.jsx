@@ -49,12 +49,12 @@ const Checkout = () => {
                         rate = 200;
                         break;
                     case "Sedan":
-                        rate = 350;
+                        rate = 300;
                         break;
                     case "SUV":
-                        rate = 500;
+                        rate = 400;
                         if (Number(fetchedCar.seatingCapacity) > 5) {
-                            rate += 100; // Additional charge for SUVs with more than 5 seats
+                            rate += 50; // Additional charge for SUVs with more than 5 seats
                         }
                         break;
                     default:
