@@ -16,16 +16,12 @@ const MapContainerComponent = () => {
         useMapEvent('click', (event) => {
             const { lat, lng } = event.latlng;
             setGeoCode([lat, lng]);
+            console.log(lat, lng);
+
         })
 
 
     }
-
-    // const markers = [
-    //     { geocode: [22.5744, 88.3629], popup: "Pickup Location 1" },
-    //     { geocode: [22.5844, 88.3429], popup: "Pickup Location 2" },
-    //     { geocode: [22.5944, 88.3129], popup: "Pickup Location 3" }
-    // ]
 
     const customMarkerIcon = new Icon({
         iconUrl: "https://img.icons8.com/?size=100&id=13800&format=png&color=000000",
