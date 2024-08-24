@@ -3,24 +3,54 @@ import React, { useState } from 'react'
 import { MapContainer, Marker, TileLayer, Popup, useMapEvent } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
+import axios from 'axios';
+import Spinner from '../Spinner/Spinner';
 
 
 
 
 const MapContainerComponent = () => {
 
-    const [geoCode, setGeoCode] = useState([]);
+    const [geoCode, setGeoCode] = useState({ lat: "", lng: "" });
+
+    const [selectedLocation, setSelectedLocation] = useState({
+        suburb: "", city: "", state: "", postcode: ""
+    })
+
+    const [loading, setLoading] = useState(false)
 
 
     const GetLocationComponent = () => {
         useMapEvent('click', (event) => {
             const { lat, lng } = event.latlng;
-            setGeoCode([lat, lng]);
+            setGeoCode({ lat: lat, lng: lng });
             console.log(lat, lng);
-
         })
+    }
+
+    const getLocationDetails = async () => {
+        try {
+            setLoading(true)
+            if (geoCode.lat === '' || geoCode.lng === '')
+                console.log("Please select a location.");
+
+            else {
+                const response = await axios.get(`http://localhost:3000/api/get-location?lat=${geoCode.lat}&lng=${geoCode.lng}`)
+
+                console.log(response);
+
+                const { city, postcode, suburb, state } = response.data.response.address;
+                setSelectedLocation({ city, postcode, suburb, state })
+            }
 
 
+        } catch (error) {
+            console.log("ERROR: ", error);
+        }
+
+        finally {
+            setLoading(false)
+        }
     }
 
     const customMarkerIcon = new Icon({
@@ -29,24 +59,44 @@ const MapContainerComponent = () => {
     })
 
     return (
-        // Currently the map is centered at Kolkata
-        <MapContainer center={[22.5744, 88.3629]} zoom={13} className='h-[75vh] w-[75vw] mx-auto' >
+        <>
+            {/* // Currently the map is centered at Kolkata */}
+            <div className='text-center'>
+                <form action="">
+                    <input className='bg-slate-200 p-2 rounded-md' type="text" name="" id="" placeholder='landmark/street name' />
+                    <button className='bg-slate-900 p-2 rounded-sm text-white'>search</button>
+                </form>
+                <h1 className='text-2xl font-bold flex flex-col items-center'>Selected Location</h1>
+                {loading && <Spinner />}
+                {selectedLocation.city !== '' &&
+                    <p className='text-lg font-light'>{selectedLocation.suburb}{selectedLocation.city} - {selectedLocation.postcode} {selectedLocation.state} </p>
+                }
 
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+            </div>
 
-            />
 
-            {geoCode.length !== 0 && <Marker position={geoCode} icon={customMarkerIcon}>
-                <Popup>
-                    <h1 className='text-lg font-semibold'>Selected Location</h1>
-                </Popup>
-            </Marker>}
+            <MapContainer center={[22.5744, 88.3629]} zoom={13} className='h-[75vh] w-[75vw] mx-auto' >
 
-            <GetLocationComponent />
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-        </MapContainer>
+                />
+
+                {geoCode.length !== 0 && <Marker position={geoCode} icon={customMarkerIcon}>
+                    <Popup>
+                        <h1 className='text-lg font-semibold'>Selected Location</h1>
+                    </Popup>
+                </Marker>}
+
+                <GetLocationComponent />
+
+
+            </MapContainer>
+            <div className='flex justify-center my-4'>
+                <button onClick={getLocationDetails} className='w-fit mx-auto bg-slate-900 py-2 px-4 rounded-md text-white'>Get Location Details</button>
+            </div>
+        </>
     )
 }
 
