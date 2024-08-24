@@ -12,11 +12,10 @@ import Spinner from '../Spinner/Spinner';
 const MapContainerComponent = () => {
 
     const [geoCode, setGeoCode] = useState({ lat: "", lng: "" });
-
     const [selectedLocation, setSelectedLocation] = useState({
         suburb: "", city: "", state: "", postcode: ""
     })
-
+    const [postalCode, setPostalCode] = useState("")
     const [loading, setLoading] = useState(false)
 
 
@@ -43,14 +42,38 @@ const MapContainerComponent = () => {
                 setSelectedLocation({ city, postcode, suburb, state })
             }
 
+        } catch (error) {
+            console.log("ERROR: ", error);
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    const getGeoCode = async (e) => {
+        try {
+            e.preventDefault()
+
+            if (postalCode === '')
+                console.log("Please enter a Postal Code.");
+
+            else {
+                console.log("POSTAL CODE = ", postalCode);
+
+                const response = await axios.get(`http://localhost:3000/api/get-geocode?postcode=${postalCode}`)
+                console.log(response);
+
+
+                const { lat, lon } = response.data.response[0];
+                console.log(lat, lon);
+
+                setGeoCode({ lat, lng: lon })
+            }
 
         } catch (error) {
             console.log("ERROR: ", error);
         }
 
-        finally {
-            setLoading(false)
-        }
     }
 
     const customMarkerIcon = new Icon({
@@ -62,9 +85,10 @@ const MapContainerComponent = () => {
         <>
             {/* // Currently the map is centered at Kolkata */}
             <div className='text-center'>
-                <form action="">
-                    <input className='bg-slate-200 p-2 rounded-md' type="text" name="" id="" placeholder='landmark/street name' />
-                    <button className='bg-slate-900 p-2 rounded-sm text-white'>search</button>
+                <form onSubmit={getGeoCode}>
+                    <input value={postalCode}
+                        onChange={(e) => { setPostalCode(e.target.value) }} className='bg-slate-200 p-3 rounded-md' type="text" name="" id="" placeholder='Postal Code' />
+                    <button className='bg-slate-900 p-3 rounded-md text-white'>search</button>
                 </form>
                 <h1 className='text-2xl font-bold flex flex-col items-center'>Selected Location</h1>
                 {loading && <Spinner />}
