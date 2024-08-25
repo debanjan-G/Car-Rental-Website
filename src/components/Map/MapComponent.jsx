@@ -82,7 +82,7 @@ const MapComponent = () => {
             </MapContainer>
 
             <div className='flex justify-center'>
-                <button onClick={getAddress} className='bg-slate-900 p-2 w-fit rounded-md text-white mt-2'>Get Address</button>
+                <button type='btn' onClick={getAddress} className='bg-slate-900 p-2 w-fit rounded-md text-white mt-2'>Get Address</button>
             </div>
         </div>
     )

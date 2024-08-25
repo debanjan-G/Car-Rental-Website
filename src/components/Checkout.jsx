@@ -100,7 +100,8 @@ const Checkout = () => {
 
     const submitAddress = (e) => {
         e.preventDefault()
-
+        console.log("SUBMITTING FORM...");
+        router.push('payment-form')
     }
 
     return (
@@ -139,38 +140,39 @@ const Checkout = () => {
 
                     {showAddressForm ?
 
-                        <form className='w-full mx-10 md:w-1/2' onSubmit={submitAddress}>
-                            <fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
-                                <legend className="text-xl font-bold text-center">Address details</legend>
+                        <div className='w-full mx-10 md:w-1/2 space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg'>
 
-                                <div className='w-full flex justify-center'>
-                                    <MapComponent />
-                                </div>
+                            <legend className="text-xl font-bold text-center">Address details</legend>
+
+                            <div className='w-full flex justify-center'>
+                                <MapComponent />
+                            </div>
+
+                            <AlertDialog className='z-20'>
+                                <AlertDialogTrigger asChild>
+                                    <Button className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition" variant="outline">Confirm Address
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                            Please review your address details carefully. Confirming will save this address and finalize your changes.
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                        <AlertDialogAction>
+                                            <Link href={`/payment-form?cost=${cost}`}>
+                                                Continue
+                                            </Link>
+                                        </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
 
 
-                                {/* <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Confirm Address</button> */}
-
-                                <AlertDialog className='z-20'>
-                                    <AlertDialogTrigger asChild>
-                                        <Button className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition" variant="outline">Confirm Address</Button>
-                                    </AlertDialogTrigger>
-                                    <AlertDialogContent>
-                                        <AlertDialogHeader>
-                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                            <AlertDialogDescription>
-                                                Please review your address details carefully. Confirming will save this address and finalize your changes.
-                                            </AlertDialogDescription>
-                                        </AlertDialogHeader>
-                                        <AlertDialogFooter>
-                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                            <AlertDialogAction>Continue</AlertDialogAction>
-                                        </AlertDialogFooter>
-                                    </AlertDialogContent>
-                                </AlertDialog>
-
-                            </fieldset>
-
-                        </form>
+                        </div>
 
                         :
 
