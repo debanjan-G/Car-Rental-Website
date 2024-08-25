@@ -6,15 +6,26 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import DatePicker from './ui/DatePicker';
 import RentConfirmed from './RentConfirmed';
-import {
-    Alert,
-    AlertDescription,
-    AlertTitle,
-} from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import Link from 'next/link';
 import EmptyCheckoutImage from "../../public/what-you-were-looking-was-not-found-search-not-found-concept-illustration-flat-design-eps10-modern-style-graphic-element-for-landing-page-empty-state-ui-infographic-etc-vector.jpg"
 import SelectedCar from './SelectedCar';
+import dynamic from 'next/dynamic';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
+
+// importing MAP component with SSR disabled
+const MapComponent = dynamic(() => import('../components/Map/MapComponent'), { ssr: false });
 
 const Checkout = () => {
     const searchParams = useSearchParams();
@@ -23,16 +34,14 @@ const Checkout = () => {
     const [pickupTime, setPickupTime] = useState('');
     const [returnTime, setReturnTime] = useState('');
     const [rentDuration, setRentDuration] = useState(null);
-    // const [baseRate, setBaseRate] = useState(0);
     const [cost, setCost] = useState(0);
-
     const [isConfirmed, setIsConfirmed] = useState(false);
     const [isCarSelected, setIsCarSelected] = useState(searchParams.size > 0);
     const [showCarDetails, setShowCarDetails] = useState(false);
     const carDetailsRef = useRef();
+    const [showAddressForm, setShowAddressForm] = useState(false);
 
     useEffect(() => {
-
         window.scrollTo(0, 0); // Scroll to the top of the page
 
         if (isCarSelected) {
@@ -64,11 +73,12 @@ const Checkout = () => {
                 setCost(rate);
             }
         }
-
     }, [isCarSelected, searchParams]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // show the address form
+        setShowAddressForm(true);
 
         // Convert times to Date objects (using today's date for both)
         const today = new Date().toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
@@ -80,12 +90,17 @@ const Checkout = () => {
         const hoursCeil = Math.abs(Math.ceil(differenceInHours));
 
         setRentDuration(hoursCeil);
-        setCost(prev => prev * hoursCeil)
+        setCost(prev => prev * hoursCeil);
     }
 
-    const handleCarDetailsShow = (e) => {
+    const handleCarDetailsShow = () => {
         setShowCarDetails(true);
-        carDetailsRef.current.scrollIntoView({ behaviour: 'smooth' })
+        carDetailsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const submitAddress = (e) => {
+        e.preventDefault()
+
     }
 
     return (
@@ -93,96 +108,147 @@ const Checkout = () => {
             <div>
                 <h1 className='text-center text-4xl font-bold my-4'>CHECKOUT PAGE</h1>
 
-                {isConfirmed ?
-                    // div showing Rent Confirmed Component
+                {isConfirmed && (
                     <div className='text-center p-10 w-full mx-auto'>
                         <RentConfirmed />
-                        <button className='py-2 px-4 my-4 bg-slate-500 hover:bg-slate-700 transition duration-200 text-white rounded-md mx-auto text-center' onClick={handleCarDetailsShow}>Check Rent Details</button>
+                        <button
+                            className='py-2 px-4 my-4 bg-slate-500 hover:bg-slate-700 transition duration-200 text-white rounded-md mx-auto text-center'
+                            onClick={handleCarDetailsShow}
+                        >
+                            Check Rent Details
+                        </button>
                     </div>
-                    : (
-                        // div showing Car Details and Rent Form
-                        <div className='flex flex-wrap justify-evenly items-center gap-8 my-4'>
+                )}
 
-                            <SelectedCar name={selectedCar.name} image={selectedCar.image} seatingCapacity={selectedCar.seatingCapacity} mileage={selectedCar.mileage} modelType={selectedCar.modelType} modelYear={selectedCar.modelYear} />
 
-                            <form className='w-full mx-10  md:w-1/3' onSubmit={handleSubmit}>
-                                <fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
-                                    <legend className="text-xl font-bold text-center">Rent details</legend>
 
-                                    <div>
-                                        <label className="block">Pickup Date</label>
-                                        <DatePicker />
+                <div className='flex flex-wrap justify-evenly items-center gap-8 my-4'>
+
+                    <SelectedCar
+                        name={selectedCar.name}
+                        image={selectedCar.image}
+                        seatingCapacity={selectedCar.seatingCapacity}
+                        mileage={selectedCar.mileage}
+                        modelType={selectedCar.modelType}
+                        modelYear={selectedCar.modelYear}
+                        cost={cost}
+                        rentDuration={rentDuration}
+                    />
+
+
+
+                    {showAddressForm ?
+
+                        <form className='w-full mx-10 md:w-1/2' onSubmit={submitAddress}>
+                            <fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
+                                <legend className="text-xl font-bold text-center">Address details</legend>
+
+                                <div className='w-full flex justify-center'>
+                                    <MapComponent />
+                                </div>
+
+
+                                {/* <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Confirm Address</button> */}
+
+                                <AlertDialog className='z-20'>
+                                    <AlertDialogTrigger asChild>
+                                        <Button className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition" variant="outline">Confirm Address</Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                Please review your address details carefully. Confirming will save this address and finalize your changes.
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                            <AlertDialogAction>Continue</AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+
+                            </fieldset>
+
+                        </form>
+
+                        :
+
+                        <form className='w-full mx-10 md:w-1/3' onSubmit={handleSubmit}>
+                            <fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
+                                <legend className="text-xl font-bold text-center">Rent details</legend>
+
+                                <div>
+                                    <label className="block">Pickup Date</label>
+                                    <DatePicker />
+                                </div>
+
+                                <div>
+                                    <label className="block">Pickup Time</label>
+                                    <input
+                                        type='time'
+                                        className="mt-1 block rounded-md p-2 shadow-md w-full"
+                                        required
+                                        onChange={(e) => setPickupTime(e.target.value)}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block">Return Time</label>
+                                    <input
+                                        type='time'
+                                        className="mt-1 block rounded-md p-2 shadow-md w-full"
+                                        required
+                                        onChange={(e) => setReturnTime(e.target.value)}
+                                    />
+                                </div>
+
+                                {rentDuration ? (
+                                    <div className='w-full'>
+                                        {/* <Alert className='mb-4'>
+                                            <AlertTitle>Total Cost = ₹{cost}</AlertTitle>
+                                            <AlertDescription>
+                                                Rent Duration = {rentDuration} hours
+                                            </AlertDescription>
+                                        </Alert> */}
+
+                                        <Link href={`payment-form?cost=${cost}`} className='my-0 bg-blue-500 no-underline text-white px-4 py-2 rounded-sm w-full'>Proceed to Payment</Link>
                                     </div>
-
-                                    <div>
-                                        <label className="block">Pickup Time</label>
-                                        <input
-                                            type='time'
-                                            className="mt-1 block rounded-md p-2 shadow-md w-full"
-                                            required
-                                            onChange={(e) => setPickupTime(e.target.value)}
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block">Return Time</label>
-                                        <input
-                                            type='time'
-                                            className="mt-1 block rounded-md p-2 shadow-md w-full"
-                                            required
-                                            onChange={(e) => setReturnTime(e.target.value)}
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block">Pickup Location</label>
-                                        <input
-                                            className="mt-1 block rounded-md p-2 shadow-md w-full"
-                                            placeholder='eg: 123 Main St, Downtown Central'
-                                            required
-                                        />
-                                    </div>
-
-                                    {rentDuration ? (
-
-                                        <div className='w-full'>
-                                            <Alert className='mb-4'>
-                                                <AlertTitle> Total Cost = ₹{cost}</AlertTitle>
-                                                <AlertDescription>
-                                                    Rent Duration = {rentDuration} hours
-                                                </AlertDescription>
-                                            </Alert>
-
-                                            <Link href={`payment-form?cost=${cost}`} className='my-0 bg-blue-500 no-underline text-white px-4 py-2 rounded-sm w-full'>Proceed to Payment</Link>
-
-
-
-                                        </div>
-                                    ) : (
-                                        <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Calculate Total Cost</button>
-                                    )}
-                                </fieldset>
-                            </form>
-                        </div>
-                    )}
-
-                {/* div showing Rent Details */}
-                <div ref={carDetailsRef} className={`${!showCarDetails && 'invisible'} flex items-center justify-evenly bg-blue-200 p-10 w-fit mx-auto rounded-lg shadow-lg`}>
-                    {showCarDetails &&
-
-                        <SelectedCar name={selectedCar.name} image={selectedCar.image} seatingCapacity={selectedCar.seatingCapacity} mileage={selectedCar.mileage} modelType={selectedCar.modelType} modelYear={selectedCar.modelYear} />
-                    }
-                    <Badge className='p-4 text-lg'>Rent Duration - {rentDuration} Hours</Badge>
-                    <Badge className='p-4 text-lg'>Rent Cost - ₹{cost}</Badge>
-
+                                ) : (
+                                    <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Continue</button>
+                                    /* <button
+                                        className='bg-blue-500 no-underline text-white px-4 py-2 rounded-sm w-full my-4'
+                                        onClick={continueToAddress}
+                                    >
+                                        Continue
+                                    </button> */
+                                )}
+                            </fieldset>
+                        </form>}
                 </div>
 
-            </div>
+                {
+                    showCarDetails && (
+                        <div ref={carDetailsRef} className='flex items-center justify-evenly bg-blue-200 p-10 w-fit mx-auto rounded-lg shadow-lg'>
+                            <SelectedCar
+                                name={selectedCar.name}
+                                image={selectedCar.image}
+                                seatingCapacity={selectedCar.seatingCapacity}
+                                mileage={selectedCar.mileage}
+                                modelType={selectedCar.modelType}
+                                modelYear={selectedCar.modelYear}
+                            />
+                            <Badge className='p-4 text-lg'>Rent Duration - {rentDuration} Hours</Badge>
+                            <Badge className='p-4 text-lg'>Rent Cost - ₹{cost}</Badge>
+                        </div>
+                    )
+                }
+            </div >
         ) : (
             <div className='p-4 text-center'>
-                <Image src={EmptyCheckoutImage} alt='empty-checkout' className='object-contain size-80 mx-auto ' />
+                <Image src={EmptyCheckoutImage} alt='empty-checkout' className='object-contain size-80 mx-auto' />
                 <h1 className='font-bold'>Oops! Please select a car first</h1>
-                <p className='font-light text-lg mb-4 '>It looks like you haven't selected a car yet. Please choose a car first to proceed with the checkout.</p>
+                <p className='font-light text-lg mb-4'>It looks like you haven't selected a car yet. Please choose a car first to proceed with the checkout.</p>
                 <Link href='/' className='my-4 p-3 no-underline text-lg bg-blue-500 hover:bg-blue-700 duration-200 transition text-white rounded-md'>Browse Cars</Link>
             </div>
         )

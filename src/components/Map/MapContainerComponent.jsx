@@ -11,7 +11,7 @@ import Spinner from '../Spinner/Spinner';
 
 const MapContainerComponent = () => {
 
-    const [geoCode, setGeoCode] = useState({ lat: "", lng: "" });
+    const [geoCode, setGeoCode] = useState({ lat: "22.5744", lng: "88.3629" });
     const [selectedLocation, setSelectedLocation] = useState({
         suburb: "", city: "", state: "", postcode: ""
     })
@@ -99,7 +99,7 @@ const MapContainerComponent = () => {
             </div>
 
 
-            <MapContainer center={[22.5744, 88.3629]} zoom={13} className='h-[75vh] w-[75vw] mx-auto' >
+            <MapContainer center={[geoCode.lat, geoCode.lng]} zoom={13} className='h-[75vh] w-[75vw] mx-auto' >
 
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
