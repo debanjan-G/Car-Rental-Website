@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 import HeroImage from "../../public/iqbal-muakhid-VuCJjPZUZaY-unsplash.jpg"
 import Image from 'next/image'
-import { Button } from './ui/MyButton'
+import { Button } from './ui/button'
 import Catalogue from './Catalogue'
 
 

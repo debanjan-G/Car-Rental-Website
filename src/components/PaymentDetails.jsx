@@ -43,6 +43,8 @@ const PaymentDetails = ({
                 <p><span className="font-semibold"><FaRegClock className="inline" /> Payment Time:</span> On {formattedDate} at {formattedTime}</p>
 
                 <p><span className="font-semibold"><CiCreditCard2 className="inline" /> Payment Mode :</span> {paymentBy}</p>
+
+                <p><span className="font-semibold"><CiCreditCard2 className="inline" /> Pickup Location Mode :</span> {paymentBy}</p>
             </div>
             <Link
                 href="/"

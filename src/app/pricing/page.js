@@ -40,22 +40,13 @@ const PricingPage = () => {
                 <AccordionContent className="text-base">
                   <ul className="list-disc">
                     <li>
-                      <span className="font-bold">Hourly Rentals:</span> Ideal
-                      for short trips or running errands around the city.
-                      Starting at just ₹[X] per hour, our hourly rates are
-                      perfect for those quick getaways.{" "}
+                      <span className="font-bold">Hourly Rentals:</span> All our
+                      rentals start with a base hourly rate, making it easy to
+                      plan short trips or errands. The final cost depends on the
+                      number of hours you rent the car, with an additional
+                      charge if the vehicle's seating capacity exceeds 5.{" "}
                     </li>
-                    <li>
-                      <span className="font-bold">Daily Rentals:</span> Planning
-                      a full-day adventure or a weekend getaway? Our daily rates
-                      provide great value, with discounts applied for multi-day
-                      rentals.{" "}
-                    </li>
-                    <li>
-                      <span className="font-bold">Weekly Rentals:</span> For
-                      longer trips or if you simply need a car for an extended
-                      period, our weekly rates offer significant savings.{" "}
-                    </li>
+                    
                   </ul>
                 </AccordionContent>
               </AccordionItem>
@@ -68,21 +59,23 @@ const PricingPage = () => {
                 <AccordionContent className="text-base">
                   <ul className="list-disc">
                     <li>
-                      <span className="font-bold">Compact Cars:</span>{" "}
-                      Affordable and fuel-efficient, perfect for city driving
-                      and solo travelers. Rates start at ₹[X] per hour.{" "}
+                      <span className="font-bold">Compact Cars:</span> Priced
+                      based on an hourly rate, these cars are perfect for city
+                      driving. The rate is fixed for cars with a seating
+                      capacity of up to 5.{" "}
                     </li>
                     <li>
-                      <span className="font-bold">Sedans:</span> A step up in
-                      comfort, ideal for small families or business trips. Rates
-                      start at ₹[X] per hour.
+                      <span className="font-bold">Sedans:</span> With a bit more
+                      room and comfort, sedans follow the same pricing structure
+                      as compact cars. For every hour of use, a base rate is
+                      charged, and if the sedan seats more than 5 people, an
+                      extra ₹50 per hour is added.{" "}
                     </li>
                     <li>
-                      <span className="font-bold">SUVs:</span> Spacious and
-                      powerful, suitable for group travels or off-road
-                      adventures. Rates start at ₹[X] per hour, with an
-                      additional charge for SUVs with seating capacities of over
-                      5 people.
+                      <span className="font-bold">SUVs:</span> Built for larger
+                      groups or off-road adventures, SUVs are charged by the
+                      hour. Additionally, for SUVs with more than 5 seats, an
+                      extra ₹50 per hour is added to the base hourly rate.{" "}
                     </li>
                   </ul>
                 </AccordionContent>
@@ -91,10 +84,6 @@ const PricingPage = () => {
           </Accordion>
         </ol>
       </div>
-      <p className="my-8  text-base md:text-xl outline p-4 rounded-md w-full md:w-1/2 mx-auto">
-        Ready to hit the road? Use our booking tool to find the perfect car for
-        your needs and see the exact pricing for your trip.
-      </p>
     </div>
   );
 };
