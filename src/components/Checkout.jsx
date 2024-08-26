@@ -41,6 +41,7 @@ const Checkout = () => {
     const carDetailsRef = useRef();
     const [showAddressForm, setShowAddressForm] = useState(false);
 
+
     useEffect(() => {
         window.scrollTo(0, 0); // Scroll to the top of the page
 
@@ -85,6 +86,10 @@ const Checkout = () => {
         const pickupDate = new Date(`${today}T${pickupTime}:00`);
         const returnDate = new Date(`${today}T${returnTime}:00`);
 
+        if (returnDate < pickupDate) {
+            returnDate.setDate(returnDate.getDate() + 1); // Add one day to the return date
+        }
+
         // Calculate the difference in hours
         const differenceInHours = (returnDate - pickupDate) / (1000 * 60 * 60);
         const hoursCeil = Math.abs(Math.ceil(differenceInHours));
@@ -96,12 +101,6 @@ const Checkout = () => {
     const handleCarDetailsShow = () => {
         setShowCarDetails(true);
         carDetailsRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    const submitAddress = (e) => {
-        e.preventDefault()
-        console.log("SUBMITTING FORM...");
-        router.push('payment-form')
     }
 
     return (
