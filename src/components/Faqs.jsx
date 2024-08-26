@@ -8,9 +8,9 @@ import {
 
 const Faqs = () => {
     return (
-        <div className='flex h-[80vh] flex-col justify-center items-center'>
-            <h1 className='text-2xl  md:text-5xl font-bold my-4'>Frequently Asked Questions</h1>
-            <Accordion type="single" collapsible className="w-1/2 text">
+        <div className='flex h-[80vh] p-4 flex-col justify-center items-center'>
+            <h1 className='text-2xl text-center  md:text-4xl font-bold my-4'>Frequently Asked Questions</h1>
+            <Accordion type="single" collapsible className="w-full md:w-1/2 text">
                 <AccordionItem value="item-1">
                     <AccordionTrigger className='text-base md:text-xl'>How do I book a car?</AccordionTrigger>
                     <AccordionContent className='text-base'>

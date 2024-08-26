@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import SearchBar from './SearchBar'
 import CarCard from './ui/CarCard';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -24,6 +24,7 @@ const Catalogue = () => {
     //pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [carsPerPage, setCarsPerPage] = useState(6);
+    const catalogueRef = useRef()
 
     useEffect(() => {
         const fetchAllCars = async () => {
@@ -62,9 +63,11 @@ const Catalogue = () => {
     const lastCarIndex = currentPage * carsPerPage;
     const firstCarIndex = lastCarIndex - carsPerPage;
 
+   
+
 
     return (
-        <div className='my-10 p-4'>
+        <div className='my-10 p-4' ref={catalogueRef}>
             <h1 className='font-semibold'>Car Catalogue</h1>
             <p className='font-light'>Explore cars you might like</p>
 
@@ -99,7 +102,7 @@ const Catalogue = () => {
 
                 </div>}
             <div className='flex justify-center gap-2 mt-10'>
-                {pages.map((page) => <PageButton setCurrentPage={setCurrentPage} currentPage={currentPage} key={page} pageNo={page} />)}
+                {pages.map((page) => <PageButton catalogueRef={catalogueRef} setCurrentPage={setCurrentPage} currentPage={currentPage} key={page} pageNo={page} />)}
             </div>
 
         </div>

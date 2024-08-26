@@ -1,9 +1,10 @@
 import React from 'react'
 
-const PageButton = ({ pageNo, currentPage, setCurrentPage }) => {
+const PageButton = ({ pageNo, currentPage, setCurrentPage, catalogueRef }) => {
 
 
     const changePage = () => {
+        catalogueRef.current.scrollIntoView({ behavior: 'smooth' });
         setCurrentPage(pageNo)
     }
 

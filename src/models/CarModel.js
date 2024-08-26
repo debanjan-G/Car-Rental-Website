@@ -7,6 +7,10 @@ const CarSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
+  hourlyRate: {
+    type: Number,
+    requried: [true, "No hourly rate provided"],
+  },
   image: {
     type: String,
     required: [true, "No Car Image Given"],
