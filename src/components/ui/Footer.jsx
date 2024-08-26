@@ -16,7 +16,7 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-center flex-col col mb-3">
-                    <h5>About</h5>
+                    <h5 className='mb-4'>About</h5>
                     <ul className="nav flex-column text-center">
                         <li className="nav-item mb-2"><Link href="#" className="nav-link p-0 text-body-secondary">How it Works</Link></li>
                         <li className="nav-item mb-2"><Link href="#" className="nav-link p-0 text-body-secondary">Featured</Link></li>
@@ -27,7 +27,7 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-center flex-col col mb-3">
-                    <h5>Company</h5>
+                    <h5 className='mb-4'>Company</h5>
                     <ul className="nav flex-column text-center">
                         <li className="nav-item mb-2"><Link href="#" className="nav-link p-0 text-body-secondary">Events</Link></li>
                         <li className="nav-item mb-2"><Link href="#" className="nav-link p-0 text-body-secondary">Blog</Link></li>
@@ -38,7 +38,7 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-center flex-col col mb-3">
-                    <h5>Socials</h5>
+                    <h5 className='mb-4'>Socials</h5>
                     <ul className="nav flex-column text-center">
                         <li className="nav-item mb-2"><Link href="#" className="nav-link p-0 text-body-secondary">Discord</Link></li>
                         <li className="nav-item mb-2"><Link href="#" className="nav-link p-0 text-body-secondary">Instagram</Link></li>

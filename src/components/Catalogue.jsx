@@ -63,15 +63,20 @@ const Catalogue = () => {
     const lastCarIndex = currentPage * carsPerPage;
     const firstCarIndex = lastCarIndex - carsPerPage;
 
-   
+
 
 
     return (
         <div className='my-10 p-4' ref={catalogueRef}>
-            <h1 className='font-semibold'>Car Catalogue</h1>
-            <p className='font-light'>Explore cars you might like</p>
+            <div className='flex flex-col items-center mb-10'>
+                <h1 className='font-semibold text-4xl'>Car Catalogue</h1>
+                <p className='font-light'>Explore cars you might like</p>
 
+            </div>
             <SearchBar setCars={setCars} />
+
+
+            {/* <SearchBar setCars={setCars} /> */}
 
             {loading ? <MyLoader /> :
 
