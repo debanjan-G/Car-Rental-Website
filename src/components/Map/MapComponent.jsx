@@ -53,7 +53,7 @@ const MapComponent = () => {
             city = city || town || "Unknown City";
             suburb = suburb || "Unknown Suburb";
             state = state || "Unknown State";
-            postcode = postcode || "000000";
+            postcode = postcode || "Unknown Postcode";
             setAddress({ city, postcode, suburb, state })
 
         } catch (error) {
@@ -77,7 +77,7 @@ const MapComponent = () => {
                 //saving user coordinates as state
                 setGeocode({ lat: latitude, lng: longitude })
                 // making API request to get address from coordinates
-                const response = await axios.get(`http://localhost:3000/api/get-location?lat=${geocode.lat}&lng=${geocode.lng}`)
+                const response = await axios.get(`http://localhost:3000/api/get-location?lat=${latitude}&lng=${longitude}`)
 
                 let { city, town, postcode, suburb, state } = response.data.response.address;
 
@@ -85,7 +85,7 @@ const MapComponent = () => {
                 city = city || town || "Unknown City";
                 suburb = suburb || "Unknown Suburb";
                 state = state || "Unknown State";
-                postcode = postcode || "000000";
+                postcode = postcode || " ";
 
                 //setting the state address
                 setAddress({ city, postcode, suburb, state })

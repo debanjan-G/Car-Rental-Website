@@ -28,10 +28,10 @@ const PaymentDetails = ({
 
 
     return (
-        <div className="bg-white text-black shadow-lg flex flex-col justify-center items-center w-fit mx-auto p-10">
-            <h1 className="text-green-500 font-bold">Payment Details</h1>
+        <div className="bg-white text-black shadow-lg flex flex-col gap-2 justify-center items-center w-fit mx-auto p-10">
+            <h1 className="text-2xl text-green-500 font-bold">Payment Details</h1>
             <hr />
-            <div className="flex flex-col my-4 text-xl">
+            <div className="flex flex-col my-4 text-xl gap-3">
                 <p><span className="font-semibold"><FaMoneyBill className="inline" /> Amount Paid:</span> ₹{amount}</p>
 
                 <p><span className="font-semibold"><MdOutlinePermIdentity className="inline" /> Customer Name:</span> {customerName}</p>
@@ -44,7 +44,6 @@ const PaymentDetails = ({
 
                 <p><span className="font-semibold"><CiCreditCard2 className="inline" /> Payment Mode :</span> {paymentBy}</p>
 
-                <p><span className="font-semibold"><CiCreditCard2 className="inline" /> Pickup Location Mode :</span> {paymentBy}</p>
             </div>
             <Link
                 href="/"
