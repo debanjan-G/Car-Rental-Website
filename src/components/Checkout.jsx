@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import CARS from '@/data/cars';
+// import CARS from '@/data/cars';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import DatePicker from './ui/DatePicker';
@@ -23,6 +23,7 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import axios from 'axios';
 
 // importing MAP component with SSR disabled
 const MapComponent = dynamic(() => import('../components/Map/MapComponent'), { ssr: false });
@@ -43,17 +44,32 @@ const Checkout = () => {
 
 
     useEffect(() => {
-        window.scrollTo(0, 0); // Scroll to the top of the page
+        // window.scrollTo(0, 0); // Scroll to the top of the page
 
-        if (isCarSelected) {
-            const carName = searchParams.get('car');
-            const fetchedCar = CARS.find(car => car.name === carName);
+        const fetchCar = async () => {
+            try {
+                if (isCarSelected) {
+                    const carName = searchParams.get('car');
 
-            if (fetchedCar) {
-                setSelectedCar(fetchedCar);
-                setCost(fetchedCar.hourlyRate);
+                    const response = await axios.get(`http://localhost:3000/api/cars/${carName}`)
+                    console.log(response);
+
+                    const fetchedCar = response.data.car;
+
+                    if (fetchedCar) {
+                        setSelectedCar(fetchedCar);
+                        setCost(fetchedCar.hourlyRate);
+                    }
+                }
+            } catch (error) {
+                console.log("ERROR: ", error);
+
             }
         }
+
+        fetchCar();
+
+
     }, [isCarSelected, searchParams]);
 
     const handleSubmit = (e) => {
