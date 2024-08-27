@@ -9,9 +9,7 @@ import { Terminal } from "lucide-react"
 import axios from 'axios';
 import MyLoader from './ui/Loader/MyLoader';
 import PageButton from './ui/PageButton';
-
-
-
+import SortCars from './SortCars';
 
 
 const Catalogue = () => {
@@ -28,9 +26,6 @@ const Catalogue = () => {
     const catalogueRef = useRef()
 
 
-   
-
-    const [selectedSortOption, setSelectedSortOption] = useState({ id: 0, name: 'Sort Cars' });
 
     useEffect(() => {
         const fetchAllCars = async () => {
@@ -82,16 +77,9 @@ const Catalogue = () => {
             </div>
 
 
-            {/* <div className='flex items-center'> */}
+            <SearchBar setCars={setCars} />
 
-            <SearchBar setCars={setCars} selectedSortOption={selectedSortOption} setSelectedSortOption={setSelectedSortOption} />
-
-
-
-            {/* </div> */}
-
-
-
+            <SortCars setCars={setCars} cars={cars} setFetchToggler={setFetchToggler} />
 
 
             {loading ? <MyLoader /> :
