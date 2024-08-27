@@ -131,6 +131,7 @@ const Checkout = () => {
                         mileage={selectedCar.mileage}
                         modelType={selectedCar.modelType}
                         modelYear={selectedCar.modelYear}
+                        hourlyRate={selectedCar.hourlyRate}
                         cost={cost}
                         rentDuration={rentDuration}
                     />
