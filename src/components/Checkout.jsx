@@ -51,27 +51,7 @@ const Checkout = () => {
 
             if (fetchedCar) {
                 setSelectedCar(fetchedCar);
-
-                // Calculate base rate according to selected car
-                let rate = 0;
-                switch (fetchedCar.modelType) {
-                    case "Compact Car":
-                        rate = 200;
-                        break;
-                    case "Sedan":
-                        rate = 300;
-                        break;
-                    case "SUV":
-                        rate = 400;
-                        if (Number(fetchedCar.seatingCapacity) > 5) {
-                            rate += 50; // Additional charge for SUVs with more than 5 seats
-                        }
-                        break;
-                    default:
-                        rate = 300;
-                        break;
-                }
-                setCost(rate);
+                setCost(fetchedCar.hourlyRate);
             }
         }
     }, [isCarSelected, searchParams]);

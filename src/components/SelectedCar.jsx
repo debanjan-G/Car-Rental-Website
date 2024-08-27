@@ -5,6 +5,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { FaCar } from "react-icons/fa";
 import { LuFuel } from "react-icons/lu";
+import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 import {
     Alert,
     AlertDescription,
@@ -31,14 +32,20 @@ const SelectedCar = ({ name, image, seatingCapacity, mileage, modelType, modelYe
             <hr className='bg-red-500' />
 
             <div className='flex flex-wrap gap-4 w-full justify-around items-center'>
-                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><MdOutlineAirlineSeatReclineNormal className='size-6' /> Seating Capacity - {seatingCapacity}</Badge>
-                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><LuFuel className='size-6' /> Mileage - {mileage}</Badge>
-                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'><FaCar className='size-6' /> Class - {modelType}</Badge>
                 <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'>
-                    <FaRegCalendarAlt className='size-6' /> Manufacture Year - {modelYear}
+                    <MdOutlineAirlineSeatReclineNormal className='size-6' /> Seating Capacity - {seatingCapacity}
                 </Badge>
                 <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'>
-                    <FaRegCalendarAlt className='size-6' /> Rate - ₹{hourlyRate}/hr
+                    <LuFuel className='size-6' /> Mileage - {mileage}
+                </Badge>
+                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'>
+                    <FaCar className='size-6' /> Class - {modelType}
+                </Badge>
+                {/* <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'>
+                    <FaRegCalendarAlt className='size-6' /> Manufacture Year - {modelYear}
+                </Badge> */}
+                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-600 flex gap-2'>
+                    <RiMoneyRupeeCircleLine className='size-6' /> Rate - ₹{hourlyRate}/hr
                 </Badge>
             </div>
         </div>
