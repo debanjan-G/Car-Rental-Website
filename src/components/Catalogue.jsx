@@ -13,6 +13,7 @@ import PageButton from './ui/PageButton';
 
 
 
+
 const Catalogue = () => {
 
     const [cars, setCars] = useState([]);
@@ -25,6 +26,11 @@ const Catalogue = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [carsPerPage, setCarsPerPage] = useState(6);
     const catalogueRef = useRef()
+
+
+   
+
+    const [selectedSortOption, setSelectedSortOption] = useState({ id: 0, name: 'Sort Cars' });
 
     useEffect(() => {
         const fetchAllCars = async () => {
@@ -72,11 +78,21 @@ const Catalogue = () => {
                 <h1 className='font-semibold text-4xl'>Car Catalogue</h1>
                 <p className='font-light'>Explore cars you might like</p>
 
+
             </div>
-            <SearchBar setCars={setCars} />
 
 
-            {/* <SearchBar setCars={setCars} /> */}
+            {/* <div className='flex items-center'> */}
+
+            <SearchBar setCars={setCars} selectedSortOption={selectedSortOption} setSelectedSortOption={setSelectedSortOption} />
+
+
+
+            {/* </div> */}
+
+
+
+
 
             {loading ? <MyLoader /> :
 
@@ -99,7 +115,7 @@ const Catalogue = () => {
                                     Sorry, we don't have any cars matching your search available for rent right now. Please check back later or explore other options!
                                 </AlertDescription>
                             </Alert>
-                            <button onClick={() => setFetchToggler(prev => !prev)} className='w-1/2 bg-slate-950 text-white rounded-md py-2 px-4 my-4'>Show all</button>
+                            <button onClick={() => setFetchToggler(prev => !prev)} className='w-1/2 bg-slate-950 text-white rounded-md py-2 px-4 my-4'>Show all available cars</button>
                         </div>
 
                     }
