@@ -24,6 +24,7 @@ const Catalogue = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [carsPerPage, setCarsPerPage] = useState(6);
     const catalogueRef = useRef()
+    const [selectedSortOption, setSelectedSortOption] = useState({ id: 0, name: 'Sort Cars' });
 
 
 
@@ -34,6 +35,8 @@ const Catalogue = () => {
                 const response = await axios.get('http://localhost:3000/api/cars')
                 console.log(response);
                 setCars(response.data.cars);
+
+               
             } catch (error) {
                 console.log(error);
             } finally {
@@ -77,9 +80,9 @@ const Catalogue = () => {
             </div>
 
 
-            <SearchBar setCars={setCars} />
+            <SearchBar setCars={setCars} setSelectedSortOption={setSelectedSortOption}/>
 
-            <SortCars setCars={setCars} cars={cars} setFetchToggler={setFetchToggler} />
+            <SortCars setCars={setCars} cars={cars} selectedSortOption={selectedSortOption} setSelectedSortOption={setSelectedSortOption} />
 
 
             {loading ? <MyLoader /> :

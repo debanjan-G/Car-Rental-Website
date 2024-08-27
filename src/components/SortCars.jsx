@@ -2,9 +2,9 @@ import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headless
 import { useState } from 'react'
 
 
-const SortCars = ({ setCars, cars, setFetchToggler }) => {
+const SortCars = ({ setCars, cars, setSelectedSortOption, selectedSortOption }) => {
 
-    const [selectedSortOption, setSelectedSortOption] = useState({ id: 0, name: 'Sort Cars' });
+
 
     const options = [
         { id: 1, name: 'Sort by Price: Low to High' },

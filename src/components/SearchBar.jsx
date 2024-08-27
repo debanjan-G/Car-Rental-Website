@@ -5,17 +5,19 @@ import CompanyMenu from './CompanyMenu';
 import axios from 'axios';
 
 
-const SearchBar = ({ setCars, setSelectedSortOption, selectedSortOption }) => {
+const SearchBar = ({ setCars, setSelectedSortOption }) => {
 
     const [searchedCarCompany, setSearchedCarCompany] = useState()
 
- 
+
     const handleFormSubmit = async (e) => {
         try {
             e.preventDefault();
-            console.log(searchedCarCompany);
-            //fetching cars
 
+            //resetting the sort btn
+            setSelectedSortOption({ id: 0, name: 'Sort Cars' })
+
+            //fetching cars
             const response = await axios.get('http://localhost:3000/api/cars')
             console.log(response.data);
 
@@ -40,7 +42,7 @@ const SearchBar = ({ setCars, setSelectedSortOption, selectedSortOption }) => {
         <form onSubmit={handleFormSubmit} className='w-full'>
             <div className='flex gap-2 justify-center'>
 
-               
+
 
                 <CompanyMenu setCompany={setSearchedCarCompany} />
                 <button type='submit' className='hover:scale-105 transition duration-200'>

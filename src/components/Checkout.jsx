@@ -44,7 +44,7 @@ const Checkout = () => {
 
 
     useEffect(() => {
-        // window.scrollTo(0, 0); // Scroll to the top of the page
+        window.scrollTo(0, 0); // Scroll to the top of the page
 
         const fetchCar = async () => {
             try {
