@@ -31,7 +31,7 @@ const PaymentDetails = ({
         <div className="bg-white text-black shadow-lg flex flex-col gap-2 justify-center items-center w-fit mx-auto p-10">
             <h1 className="text-2xl text-green-500 font-bold">Payment Details</h1>
             <hr />
-            <div className="flex flex-col my-4 text-xl gap-3">
+            <div className="flex flex-col my-4 text-base md:text-xl gap-3">
                 <p><span className="font-semibold"><FaMoneyBill className="inline" /> Amount Paid:</span> ₹{amount}</p>
 
                 <p><span className="font-semibold"><MdOutlinePermIdentity className="inline" /> Customer Name:</span> {customerName}</p>
@@ -47,7 +47,7 @@ const PaymentDetails = ({
             </div>
             <Link
                 href="/"
-                className="outline no-underline hover:bg-green-700 bg-green-500 py-2 px-4 mt-4 rounded-md text-white text-xl"
+                className="outline no-underline hover:bg-green-700 bg-green-500 py-2 px-4 mt-4 rounded-md text-white text-base md:text-xl"
             >
                 Home
             </Link>

@@ -10,7 +10,7 @@ import {
 
 const PricingPage = () => {
   return (
-    <div>
+    <div className="p-4">
       <h1 className="text-center font-bold text-2xl  md:text-4xl my-8">
         Pricing Overview
       </h1>

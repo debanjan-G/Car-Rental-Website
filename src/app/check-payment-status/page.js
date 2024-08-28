@@ -54,7 +54,7 @@ const PaymentStatusPage = () => {
   };
 
   return (
-    <div className="h-fit p-10 flex items-center bg-slate-300 ">
+    <div className=" h-fit p-10 flex items-center bg-slate-300 ">
       {showPaymentDetails ? (
         <PaymentDetails
           customerName={customerName}
@@ -65,18 +65,18 @@ const PaymentStatusPage = () => {
           paymentBy={paymentVia}
         />
       ) : (
-        <div className="bg-white shadow-lg flex flex-col justify-center items-center w-fit mx-auto p-10">
+        <div className="bg-white shadow-lg flex flex-col justify-center items-center min-w-fit mx-auto p-10">
           <Image
             src={PaymentSuccessImage}
             alt="payment-successful"
             className="object-contain w-40"
             priority
           />
-          <h1 className="text-green-500 text-3xl font-bold">
+          <h1 className="text-green-500 text-xl md:text-3xl font-bold">
             Woohoo! You Did It!
           </h1>
-          <p className="font-light text-xl">
-            Payment confirmed—you're all set!
+          <p className="font-light text-base md:text-xl my-2 text-center">
+            Payment confirmed — you're all set!
           </p>
           <Link
             href="/"

@@ -41,7 +41,7 @@ const SortCars = ({ setCars, cars, setSelectedSortOption, selectedSortOption, se
 
     return (
         <Listbox value={selectedSortOption} onChange={setSelectedSortOption}>
-            <ListboxButton className='bg-blue-500 text-white font-light p-2 rounded-md w-1/3 h-fit' >{selectedSortOption.name}</ListboxButton>
+            <ListboxButton className='bg-blue-500 text-white font-light p-2 rounded-md min-w-1/3 h-fit text-sm md:text-base' >{selectedSortOption.name}</ListboxButton>
             <ListboxOptions anchor="bottom">
                 {options.map((option) => (
                     <ListboxOption onClick={() => handleOptionClick(option.id)} key={option.id} value={option} className="bg-white focus:bg-blue-200 p-2 hover:cursor-pointer hover:bg-red-200">

@@ -27,7 +27,7 @@ const Navbar = () => {
                 <TabList className="flex gap-1 md:gap-4">
                     <Link href='/checkout' className='no-underline rounded-full'>
                         <Tab
-                            className={`md:w-32 rounded-full py-1 px-1 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
+                            className={`min-w-fit md:w-32 rounded-full py-1 px-2 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
                         ${pathname === '/checkout' ? 'bg-blue-500 text-white' : 'data-[hover]:bg-white/5'} 
                         transition duration-200`}
                         >
@@ -37,7 +37,7 @@ const Navbar = () => {
 
                     <Link href='/pricing' className='no-underline  rounded-full'>
                         <Tab
-                            className={`md:w-32 rounded-full py-1 px-1 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
+                            className={`min-w-fit md:w-32 rounded-full py-1 px-2 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
                         ${pathname === '/pricing' ? 'bg-blue-500 text-white' : 'data-[hover]:bg-white/5'} 
                         transition duration-200`}
                         >
@@ -47,7 +47,7 @@ const Navbar = () => {
 
                     <Link href='/faqs' className='no-underline rounded-full'>
                         <Tab
-                            className={`md:w-32 rounded-full py-1 px-1 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
+                            className={ ` min-w-fit md:w-32 rounded-full py-1 px-2 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
                         ${pathname === '/faqs' ? 'bg-blue-500 text-white' : 'data-[hover]:bg-white/5'} 
                         transition duration-200`}
                         >

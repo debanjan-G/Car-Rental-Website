@@ -104,8 +104,8 @@ const MapComponent = () => {
 
 
     return (
-        <div>
-            <div className='font-light text-center my-2 bg-white rounded-sm p-2'>
+        <div >
+            <div className='text-sm md:text-base font-light text-center my-2 bg-white rounded-sm p-2 min-w-fit'>
                 {loading ? <Spinner /> : <h1 >
                     {address.city === '' ? "Selected Address will appear here " :
                         ` ${address.suburb}, ${address.city}, ${address.state} - ${address.postcode}`
@@ -115,7 +115,7 @@ const MapComponent = () => {
             </div>
 
             <MapContainer center={[geocode.lat, geocode.lng]} zoom={13} className='z-10 h-[45vh] w-[45vw]'>
-                <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                <TileLayer className='w-full' attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url='https://tile.openstreetmap.org/{z}/{x}/{y}.png' />
 
                 <UpdateMapCenter />
@@ -131,9 +131,9 @@ const MapComponent = () => {
             </MapContainer>
 
             <div className='flex justify-center gap-4'>
-                <button type='btn' onClick={getAddress} className='bg-slate-900 p-2 w-fit rounded-md text-white mt-2'>Get Address</button>
+                <button type='btn' onClick={getAddress} className='bg-slate-900 p-2 min-w-fit rounded-md text-white mt-2 text-sm md:text-base'>Get Address</button>
 
-                <button type='btn' onClick={getUserLocation} className='text-slate-900 p-2 w-fit rounded-md bg-white mt-2'>Detect My Location</button>
+                <button type='btn' onClick={getUserLocation} className='text-slate-900 p-2 min-w-fit rounded-md bg-white mt-2 text-sm md:text-base'>Detect My Location</button>
             </div>
         </div>
     )

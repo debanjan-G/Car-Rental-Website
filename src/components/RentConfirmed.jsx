@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const RentConfirmed = () => {
     return (
-        <div className='w-1/3 mx-auto flex flex-col items-center justify-center gap-4'>
+        <div className='w-full md:w-1/3 mx-auto flex flex-col items-center justify-center gap-4'>
             {/* <div className='p-4 bg-green-400'> */}
             <Image src={RentConfirmedImage} alt='rent-confirmed-image' className='object-contain w-64 h-6w-64' />
             {/* </div> */}

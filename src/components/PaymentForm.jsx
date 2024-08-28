@@ -66,17 +66,17 @@ const PaymentForm = () => {
     }
 
     return (
-        <div className='w-full'>
+        <div className='w-full p-4'>
 
-            <div className='bg-green-200 p-3 text-center w-1/2 mx-auto rounded-md my-4 '>
+            <div className='bg-green-200 p-3 text-center w-full md:w-1/2 mx-auto rounded-md my-4 '>
                 {token != '' ?
-                    <h1 className='text-lg w-fit mx-auto p-2 '>Token Generated!</h1>
+                    <h1 className='text-base md:text-lg w-fit mx-auto p-2 '>Token Generated!</h1>
                     :
-                    <h1 className='text-lg p-2 '>First generate token and then Pay.</h1>
+                    <h1 className='text-base md:text-lg p-2 '>First generate token and then Pay.</h1>
                 }
             </div>
 
-            <div className="w-1/4 mx-auto shadow-md bg-slate-300 rounded-md p-8">
+            <div className="w-full md:w-1/4 mx-auto shadow-md bg-slate-300 rounded-md p-8">
                 <form action="" onSubmit={handleSubmit}>
                     <Field>
                         <Label className="text-sm/6 font-medium text-black">Name</Label>
