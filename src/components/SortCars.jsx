@@ -2,7 +2,7 @@ import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headless
 import { useState } from 'react'
 
 
-const SortCars = ({ setCars, cars, setSelectedSortOption, selectedSortOption }) => {
+const SortCars = ({ setCars, cars, setSelectedSortOption, selectedSortOption, setCurrentPage }) => {
 
 
 
@@ -14,9 +14,9 @@ const SortCars = ({ setCars, cars, setSelectedSortOption, selectedSortOption }) 
     ]
 
     const handleOptionClick = (optionID) => {
-        // toggling a fetch of all cars
-        // setFetchToggler(prev => !prev)
-        console.log("Option Clicked = ", optionID);
+
+        setCurrentPage(1);
+
         let sortedCars = [...cars];
         switch (optionID) {
             case 1:
@@ -37,13 +37,11 @@ const SortCars = ({ setCars, cars, setSelectedSortOption, selectedSortOption }) 
 
         setCars(sortedCars)
         console.log("SORTED CARS = ", sortedCars);
-
-
     }
 
     return (
         <Listbox value={selectedSortOption} onChange={setSelectedSortOption}>
-            <ListboxButton className='bg-blue-500 text-white font-light p-2 rounded-md w-1/6 h-fit' >{selectedSortOption.name}</ListboxButton>
+            <ListboxButton className='bg-blue-500 text-white font-light p-2 rounded-md w-1/3 h-fit' >{selectedSortOption.name}</ListboxButton>
             <ListboxOptions anchor="bottom">
                 {options.map((option) => (
                     <ListboxOption onClick={() => handleOptionClick(option.id)} key={option.id} value={option} className="bg-white focus:bg-blue-200 p-2 hover:cursor-pointer hover:bg-red-200">

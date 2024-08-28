@@ -36,7 +36,7 @@ const Catalogue = () => {
                 console.log(response);
                 setCars(response.data.cars);
 
-               
+
             } catch (error) {
                 console.log(error);
             } finally {
@@ -80,9 +80,11 @@ const Catalogue = () => {
             </div>
 
 
-            <SearchBar setCars={setCars} setSelectedSortOption={setSelectedSortOption}/>
+            <div className='flex items-center'>
+                <SearchBar setCars={setCars} setSelectedSortOption={setSelectedSortOption} />
 
-            <SortCars setCars={setCars} cars={cars} selectedSortOption={selectedSortOption} setSelectedSortOption={setSelectedSortOption} />
+                <SortCars setCars={setCars} cars={cars} setCurrentPage={setCurrentPage} selectedSortOption={selectedSortOption} setSelectedSortOption={setSelectedSortOption} />
+            </div>
 
 
             {loading ? <MyLoader /> :
