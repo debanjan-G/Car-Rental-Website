@@ -80,7 +80,7 @@ const Catalogue = () => {
             </div>
 
 
-            <div className='flex items-center flex-wrap'>
+            <div className='flex items-center justify-center gap-2 flex-wrap'>
                 <SearchBar setCars={setCars} setSelectedSortOption={setSelectedSortOption} />
 
                 <SortCars setCars={setCars} cars={cars} setCurrentPage={setCurrentPage} selectedSortOption={selectedSortOption} setSelectedSortOption={setSelectedSortOption} />
