@@ -14,18 +14,13 @@ const PricingPage = () => {
       <h1 className="text-center font-bold text-2xl  md:text-4xl my-8">
         Pricing Overview
       </h1>
-      {/* <Image
-        src={PricingImage}
-        alt="pricing"
-        className="object-contain w-80 mx-auto rounded-md my-10"
-      /> */}
       <div className="w-full md:w-1/2 mx-auto p-2">
         <p className="font-light text-base md:text-xl text-center">
           At <span className="font-bold">CarHub</span>, we offer transparent and
           flexible pricing tailored to meet your travel needs. Our rental prices
           are determined by the duration of your rental and the type and size of
           the car you select. This ensures that you only pay for what you need,
-          whether it's a quick trip across town or an extended journey.
+          whether it&apos;s a quick trip across town or an extended journey.
         </p>
 
         <h2 className="text-center my-10 text-xl md:text-3xl">
@@ -45,7 +40,7 @@ const PricingPage = () => {
                       rentals start with a base hourly rate, making it easy to
                       plan short trips or errands. The final cost depends on the
                       number of hours you rent the car, with an additional
-                      charge if the vehicle's seating capacity exceeds 5.
+                      charge if the vehicle&apos;s seating capacity exceeds 5.
                     </li>
                   </ul>
                 </AccordionContent>

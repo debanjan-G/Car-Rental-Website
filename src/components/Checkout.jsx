@@ -247,7 +247,8 @@ const Checkout = () => {
             <div className='p-4 text-center'>
                 <Image src={EmptyCheckoutImage} alt='empty-checkout' className='object-contain size-80 mx-auto' />
                 <h1 className='font-bold text-xl md:text-3xl mb-4'>Oops! Please select a car first</h1>
-                <p className='font-light text-base md:text-lg mb-4'>It looks like you haven't selected a car yet. Please choose a car first to proceed with the checkout.</p>
+                <p className='font-light text-base md:text-lg mb-4'>It looks like you haven&apos;t selected a car yet. Please choose a car first to proceed with the checkout.
+                </p>
                 <Link href='/' className='my-4 p-3 no-underline text-sm md:text-lg bg-blue-500 hover:bg-blue-700 duration-200 transition text-white rounded-md'>Browse Cars</Link>
             </div>
         )

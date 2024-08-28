@@ -105,7 +105,7 @@ const Catalogue = () => {
                                     Heads up!
                                 </AlertTitle>
                                 <AlertDescription className='text-base md:text-lg'>
-                                    Sorry, we don't have any cars matching your search available for rent right now. Please check back later or explore other options!
+                                    Sorry, we don&apos;t have any cars matching your search available for rent right now. Please check back later or explore other options!
                                 </AlertDescription>
                             </Alert>
                             <button onClick={() => setFetchToggler(prev => !prev)} className='min-w-1/2 bg-slate-950 text-white rounded-md py-2 px-4 my-4'>Show all available cars</button>

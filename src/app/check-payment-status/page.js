@@ -76,7 +76,7 @@ const PaymentStatusPage = () => {
             Woohoo! You Did It!
           </h1>
           <p className="font-light text-base md:text-xl my-2 text-center">
-            Payment confirmed — you're all set!
+            Payment confirmed — you&apos;re all set!
           </p>
           <Link
             href="/"
