@@ -104,17 +104,17 @@ const MapComponent = () => {
 
 
     return (
-        <div >
+        <div className='p-4'>
             <div className='text-sm md:text-base font-light text-center my-2 bg-white rounded-sm p-2 min-w-fit'>
                 {loading ? <Spinner /> : <h1 >
                     {address.city === '' ? "Selected Address will appear here " :
-                        ` ${address.suburb}, ${address.city}, ${address.state} - ${address.postcode}`
+                        ` ${address.suburb}, ${address.city}- ${address.postcode}, ${address.state} `
                     }
                 </h1>}
 
             </div>
 
-            <MapContainer center={[geocode.lat, geocode.lng]} zoom={13} className='z-10 h-[45vh] w-[45vw]'>
+            <MapContainer center={[geocode.lat, geocode.lng]} zoom={13} className='z-10 h-[75vh] w-[75vw] md:h-[45vh] md:w-[45vw]'>
                 <TileLayer className='w-full' attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url='https://tile.openstreetmap.org/{z}/{x}/{y}.png' />
 

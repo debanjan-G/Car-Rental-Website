@@ -73,6 +73,7 @@ const Checkout = () => {
     }, [isCarSelected, searchParams]);
 
     const handleSubmit = (e) => {
+        window.scrollTo(0, 0);
         e.preventDefault();
         // show the address form
         setShowAddressForm(true);
@@ -136,7 +137,7 @@ const Checkout = () => {
 
                     {showAddressForm ?
 
-                        <div className='w-full mx-10 md:w-1/2 space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg'>
+                        <div className='w-full mx-auto md:w-1/2 space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg'>
 
                             <legend className="text-xl font-bold text-center">Address details</legend>
 

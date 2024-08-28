@@ -15,7 +15,7 @@ import {
 const SelectedCar = ({ name, image, seatingCapacity, mileage, modelType, modelYear, cost, rentDuration, hourlyRate }) => {
     return (
 
-        <div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
+        <div className='w-full md:w-1/3 flex flex-col items-center justify-center p-4'>
 
             {rentDuration &&
                 <Alert className='mb-4 bg-slate-200'>
@@ -27,24 +27,21 @@ const SelectedCar = ({ name, image, seatingCapacity, mileage, modelType, modelYe
             }
 
             <h1 className='text-3xl font-bold '>{name}</h1>
-            <Image src={image} width={400} height={400} className='object-contain mb-4' alt='selected-car' />
+            <Image src={image} width={400} height={400} className='object-contain my-4' alt='selected-car' />
 
             <hr className='bg-red-500' />
 
             <div className='flex flex-wrap gap-4 w-full justify-around items-center'>
-                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-700 hover:bg-blue-700 flex gap-2'>
+                <Badge className='text-center w-52 px-4 py-2 bg-slate-700 hover:bg-blue-700 flex gap-2'>
                     <MdOutlineAirlineSeatReclineNormal className='size-6' /> Seating Capacity - {seatingCapacity}
                 </Badge>
-                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-700 hover:bg-blue-700 flex gap-2'>
+                <Badge className='text-center  w-52 px-4 py-2 bg-slate-700 hover:bg-blue-700 flex gap-2'>
                     <LuFuel className='size-6' /> Mileage - {mileage}
                 </Badge>
-                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-700 hover:bg-blue-700 flex gap-2'>
+                <Badge className='text-center  w-52 px-4 py-2 bg-slate-700 hover:bg-blue-700 flex gap-2'>
                     <FaCar className='size-6' /> Class - {modelType}
                 </Badge>
-                {/* <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-blue-700 flex gap-2'>
-                    <FaRegCalendarAlt className='size-6' /> Manufacture Year - {modelYear}
-                </Badge> */}
-                <Badge className='text-center w-fit md:w-52 px-4 py-2 bg-slate-700 hover:bg-blue-700 flex gap-2'>
+                <Badge className='text-center  w-52 px-4 py-2 bg-slate-700 hover:bg-blue-700 flex gap-2'>
                     <RiMoneyRupeeCircleLine className='size-6' /> Rate - ₹{hourlyRate}/hr
                 </Badge>
             </div>
