@@ -29,12 +29,13 @@ const MapContainerComponent = () => {
 
     const getLocationDetails = async () => {
         try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
             setLoading(true)
             if (geoCode.lat === '' || geoCode.lng === '')
                 console.log("Please select a location.");
 
             else {
-                const response = await axios.get(`http://localhost:3000/api/get-location?lat=${geoCode.lat}&lng=${geoCode.lng}`)
+                const response = await axios.get(`${apiUrl}api/get-location?lat=${geoCode.lat}&lng=${geoCode.lng}`)
 
                 console.log(response);
 
@@ -53,6 +54,7 @@ const MapContainerComponent = () => {
     const getGeoCode = async (e) => {
         try {
             e.preventDefault()
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
 
             if (postalCode === '')
                 console.log("Please enter a Postal Code.");
@@ -60,7 +62,7 @@ const MapContainerComponent = () => {
             else {
                 console.log("POSTAL CODE = ", postalCode);
 
-                const response = await axios.get(`http://localhost:3000/api/get-geocode?postcode=${postalCode}`)
+                const response = await axios.get(`${apiUrl}api/get-geocode?postcode=${postalCode}`)
                 console.log(response);
 
 

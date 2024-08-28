@@ -48,10 +48,11 @@ const Checkout = () => {
 
         const fetchCar = async () => {
             try {
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
                 if (isCarSelected) {
                     const carName = searchParams.get('car');
 
-                    const response = await axios.get(`http://localhost:3000/api/cars/${carName}`)
+                    const response = await axios.get(`${apiUrl}api/cars/${carName}`)
                     console.log(response);
 
                     const fetchedCar = response.data.car;

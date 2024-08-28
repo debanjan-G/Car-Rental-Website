@@ -31,8 +31,9 @@ const PaymentForm = () => {
 
     const generateToken = async () => {
         try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
             setIsLoading(true)
-            const response = await axios.get('http://localhost:3000/api/generate-token')
+            const response = await axios.get(`${apiUrl}api/generate-token`)
             // console.log(response.data);
 
             setToken(response.data.res.access_token);
@@ -47,13 +48,14 @@ const PaymentForm = () => {
 
     const handleSubmit = async (e) => {
         try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
             e.preventDefault();
 
             const formData = { name, email, number, amount };
 
             console.log("TOKEN = ", token);
 
-            const response = await axios.post('http://localhost:3000/api/payment-request', { formData, accessToken: token })
+            const response = await axios.post(`${apiUrl}api/payment-request`, { formData, accessToken: token })
 
             console.log(response);
 

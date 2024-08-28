@@ -41,9 +41,11 @@ const MapComponent = () => {
 
     const getAddress = async () => {
         try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
+
             setLoading(true)
 
-            const response = await axios.get(`http://localhost:3000/api/get-location?lat=${geocode.lat}&lng=${geocode.lng}`)
+            const response = await axios.get(`${apiUrl}api/get-location?lat=${geocode.lat}&lng=${geocode.lng}`)
 
             console.log(response);
 
@@ -69,6 +71,7 @@ const MapComponent = () => {
 
         navigator.geolocation.getCurrentPosition(async (position) => {
             try {
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
                 setLoading(true)
                 // getting user coordinates from geolocation api (in-built in browsers)
                 const { latitude, longitude } = position.coords;
@@ -77,7 +80,7 @@ const MapComponent = () => {
                 //saving user coordinates as state
                 setGeocode({ lat: latitude, lng: longitude })
                 // making API request to get address from coordinates
-                const response = await axios.get(`http://localhost:3000/api/get-location?lat=${latitude}&lng=${longitude}`)
+                const response = await axios.get(`${apiUrl}api/get-location?lat=${latitude}&lng=${longitude}`)
 
                 let { city, town, postcode, suburb, state } = response.data.response.address;
 

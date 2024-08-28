@@ -7,7 +7,7 @@ export async function POST(req) {
     console.log("REQ BODY = ", reqBody);
 
     const { name, email, number, amount } = reqBody.formData;
-
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/";
     const body = new URLSearchParams({
       allow_repeated_payments: false,
       send_email: false,
@@ -16,9 +16,8 @@ export async function POST(req) {
       buyer_name: name,
       email,
       phone: number,
-      redirect_url: `http://localhost:3000/check-payment-status?token=${reqBody.accessToken}`,
+      redirect_url: `${apiUrl}check-payment-status?token=${reqBody.accessToken}`,
     });
-
 
     const response = await axios.post(
       "https://test.instamojo.com/v2/payment_requests/",
