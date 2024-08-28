@@ -29,10 +29,11 @@ const Catalogue = () => {
 
 
     useEffect(() => {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
         const fetchAllCars = async () => {
             try {
                 setLoading(true)
-                const response = await axios.get('http://localhost:3000/api/cars')
+                const response = await axios.get(`${apiUrl}api/cars`)
                 console.log(response);
                 setCars(response.data.cars);
 
