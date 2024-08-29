@@ -6,7 +6,7 @@ export async function GET(req, { params }) {
     const { carName } = params;
     console.log("CAR NAME = ", carName);
 
-    const car = await Cars.findOne({ name: carName }).hint({ name: 1 });
+    const car = await Cars.findOne({ name: carName });
     console.log("CAR DOCUMENT = ", car);
 
     if (!car) {
@@ -16,9 +16,13 @@ export async function GET(req, { params }) {
     // return NextResponse.json({ success: true, msg: "Hey there!" });
     return NextResponse.json({ success: true, car });
   } catch (error) {
-    console.log("ERROR -> ", error);
+    // console.log("ERROR -> ", error);
+    console.error(error.message);
     return NextResponse.json(
-      { success: false, msg: "Something Went Wrong. Check server console" },
+      {
+        success: false,
+        error: error.message,
+      },
       { status: 500 }
     );
   }
