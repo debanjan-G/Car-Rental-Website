@@ -6,15 +6,15 @@ const CarSchema = new mongoose.Schema({
     required: [true, "No Car Name Given"],
     unique: true,
     trim: true,
+    index: true, // Correct way to add an index
   },
   hourlyRate: {
     type: Number,
-    requried: [true, "No hourly rate provided"],
+    required: [true, "No hourly rate provided"],
   },
   image: {
     type: String,
     required: [true, "No Car Image Given"],
-    unique: true,
     trim: true,
   },
   seatingCapacity: { type: Number, required: true },
