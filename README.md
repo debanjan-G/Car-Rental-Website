@@ -1,3 +1,27 @@
+# 🚗 UrbanDrive
+
+Welcome to **UrbanDrive**! 🌟 UrbanDrive is a modern car rental website that offers a seamless and interactive experience for users looking to rent a car.
+
+https://github.com/user-attachments/assets/18193170-d3be-4ea2-8812-7b949bf7bd72
+
+## 📋 Features
+
+- **Browse Cars**: Explore a wide range of cars across different categories and brands. 🏎️🚙
+- **Search & Filter**: Specifically search for cars from various companies and sort them by cost per hour, mileage, and seating capacity. 🔍🔧
+- **Pagination**: Navigate through multiple pages to browse cars efficiently. 📄➡️
+- **Checkout**: Enter your details, select pickup and return times, and provide a pickup location. 🗓️📍
+- **Payment Gateway**: Proceed to a test payment gateway, enter card details, and complete the payment process. 💳✅
+- **Email Confirmation**: Receive an email confirmation with your payment details. 📧
+
+## 🌟 Tech Stack
+
+- **Next.js**: For server-side rendering and static site generation. 🌐
+- **Tailwind CSS**: For beautiful and responsive UI design. 🎨
+- **Leaflet**: For interactive maps and location selection. 🗺️
+- **MongoDB**: For robust and scalable data storage. 🗄️
+- **React**: For building dynamic and interactive user interfaces. ⚛️
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
