@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import axios from 'axios';
+import MyLoader from './ui/Loader/MyLoader';
 
 // importing MAP component with SSR disabled
 const MapComponent = dynamic(() => import('../components/Map/MapComponent'), { ssr: false });
@@ -41,6 +42,7 @@ const Checkout = () => {
     const [showCarDetails, setShowCarDetails] = useState(false);
     const carDetailsRef = useRef();
     const [showAddressForm, setShowAddressForm] = useState(false);
+    const [loading, setLoading] = useState(false)
 
 
     useEffect(() => {
@@ -48,6 +50,7 @@ const Checkout = () => {
 
         const fetchCar = async () => {
             try {
+                setLoading(true)
                 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
                 if (isCarSelected) {
                     const carName = searchParams.get('car');
@@ -64,7 +67,9 @@ const Checkout = () => {
                 }
             } catch (error) {
                 console.log("ERROR: ", error);
-
+            }
+            finally {
+                setLoading(false)
             }
         }
 
@@ -121,19 +126,20 @@ const Checkout = () => {
 
 
                 <div className='flex flex-wrap justify-evenly items-center gap-8 my-4'>
-
-                    <SelectedCar
-                        name={selectedCar.name}
-                        image={selectedCar.image}
-                        seatingCapacity={selectedCar.seatingCapacity}
-                        mileage={selectedCar.mileage}
-                        modelType={selectedCar.modelType}
-                        modelYear={selectedCar.modelYear}
-                        hourlyRate={selectedCar.hourlyRate}
-                        cost={cost}
-                        rentDuration={rentDuration}
-                    />
-
+                    {loading
+                        ? <MyLoader /> :
+                        <SelectedCar
+                            name={selectedCar.name}
+                            image={selectedCar.image}
+                            seatingCapacity={selectedCar.seatingCapacity}
+                            mileage={selectedCar.mileage}
+                            modelType={selectedCar.modelType}
+                            modelYear={selectedCar.modelYear}
+                            hourlyRate={selectedCar.hourlyRate}
+                            cost={cost}
+                            rentDuration={rentDuration}
+                        />
+                    }
 
 
                     {showAddressForm ?
