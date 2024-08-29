@@ -6,7 +6,12 @@ export async function GET(req, { params }) {
     const { carName } = params;
     console.log("CAR NAME = ", carName);
 
-    const car = await Cars.findOne({ name: carName });
+    const explainResult = await Cars.collection
+      .find({ name: carName })
+      .explain("executionStats");
+    console.log("EXPLAIN RESULT = ", explainResult);
+
+    const car = await Cars.findOne({ name: carName }).hint({ name: 1 });
     console.log("CAR DOCUMENT = ", car);
 
     if (!car) {
