@@ -13,14 +13,13 @@ const SearchBar = ({ setCars, setSelectedSortOption }) => {
     const handleFormSubmit = async (e) => {
         try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
-           
             e.preventDefault();
 
             //resetting the sort btn
             setSelectedSortOption({ id: 0, name: 'Sort Cars' })
 
             //fetching cars
-            const response = await axios.get(`${apiUrl}cars`)
+            const response = await axios.get(`${apiUrl}api/cars`)
             console.log(response.data);
 
 
