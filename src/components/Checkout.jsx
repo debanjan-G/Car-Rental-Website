@@ -8,8 +8,7 @@ import DatePicker from './ui/DatePicker';
 import RentConfirmed from './RentConfirmed';
 import { Badge } from "@/components/ui/badge"
 import Link from 'next/link';
-import EmptyCheckoutImage from "../../public/what-you-were-looking-was-not-found-search-not-found-concept-illustration-flat-design-eps10-modern-style-graphic-element-for-landing-page-empty-state-ui-infographic-etc-vector.jpg"
-import SelectedCar from './SelectedCar';
+import EmptyCheckoutImage from '../../public/No-Car-Selected-Image.png'
 import dynamic from 'next/dynamic';
 import {
     AlertDialog,
@@ -211,23 +210,13 @@ const Checkout = () => {
 
                                 {rentDuration ? (
                                     <div className='w-full'>
-                                        {/* <Alert className='mb-4'>
-                                            <AlertTitle>Total Cost = ₹{cost}</AlertTitle>
-                                            <AlertDescription>
-                                                Rent Duration = {rentDuration} hours
-                                            </AlertDescription>
-                                        </Alert> */}
+
 
                                         <Link href={`payment-form?cost=${cost}`} className='my-0 bg-blue-500 no-underline text-white px-4 py-2 rounded-sm w-full'>Proceed to Payment</Link>
                                     </div>
                                 ) : (
                                     <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Continue</button>
-                                    /* <button
-                                        className='bg-blue-500 no-underline text-white px-4 py-2 rounded-sm w-full my-4'
-                                        onClick={continueToAddress}
-                                    >
-                                        Continue
-                                    </button> */
+
                                 )}
                             </fieldset>
                         </form>}
