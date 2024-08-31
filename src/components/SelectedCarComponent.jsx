@@ -12,7 +12,7 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 
-const SelectedCar = ({ name, image, seatingCapacity, mileage, modelType, modelYear, cost, rentDuration, hourlyRate }) => {
+const SelectedCarComponent = ({ name, image, seatingCapacity, mileage, modelType, modelYear, cost, rentDuration, hourlyRate }) => {
     return (
 
         <div className='w-full md:w-1/3 flex flex-col items-center justify-center p-4'>
@@ -50,4 +50,4 @@ const SelectedCar = ({ name, image, seatingCapacity, mileage, modelType, modelYe
     )
 }
 
-export default SelectedCar
+export default SelectedCarComponent

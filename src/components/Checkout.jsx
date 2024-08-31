@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-// import CARS from '@/data/cars';
 import Image from 'next/image';
+import SelectedCarComponent from './SelectedCarComponent';
 import { useRouter } from 'next/navigation';
 import DatePicker from './ui/DatePicker';
 import RentConfirmed from './RentConfirmed';
@@ -127,7 +127,7 @@ const Checkout = () => {
                 <div className='flex flex-wrap justify-evenly items-center gap-8 my-4'>
                     {loading
                         ? <MyLoader /> :
-                        <SelectedCar
+                        <SelectedCarComponent
                             name={selectedCar.name}
                             image={selectedCar.image}
                             seatingCapacity={selectedCar.seatingCapacity}
