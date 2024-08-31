@@ -45,7 +45,7 @@ const MapComponent = () => {
 
             setLoading(true)
 
-            const response = await axios.get(`${apiUrl}api/get-location?lat=${geocode.lat}&lng=${geocode.lng}`)
+            const response = await axios.get(`${apiUrl}/api/get-location?lat=${geocode.lat}&lng=${geocode.lng}`)
 
             console.log(response);
 
@@ -80,7 +80,7 @@ const MapComponent = () => {
                 //saving user coordinates as state
                 setGeocode({ lat: latitude, lng: longitude })
                 // making API request to get address from coordinates
-                const response = await axios.get(`${apiUrl}api/get-location?lat=${latitude}&lng=${longitude}`)
+                const response = await axios.get(`${apiUrl}/api/get-location?lat=${latitude}&lng=${longitude}`)
 
                 let { city, town, postcode, suburb, state } = response.data.response.address;
 

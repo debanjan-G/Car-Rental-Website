@@ -35,7 +35,7 @@ const MapContainerComponent = () => {
                 console.log("Please select a location.");
 
             else {
-                const response = await axios.get(`${apiUrl}api/get-location?lat=${geoCode.lat}&lng=${geoCode.lng}`)
+                const response = await axios.get(`${apiUrl}/api/get-location?lat=${geoCode.lat}&lng=${geoCode.lng}`)
 
                 console.log(response);
 
@@ -62,7 +62,7 @@ const MapContainerComponent = () => {
             else {
                 console.log("POSTAL CODE = ", postalCode);
 
-                const response = await axios.get(`${apiUrl}api/get-geocode?postcode=${postalCode}`)
+                const response = await axios.get(`${apiUrl}/api/get-geocode?postcode=${postalCode}`)
                 console.log(response);
 
 

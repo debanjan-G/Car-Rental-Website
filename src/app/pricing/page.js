@@ -16,11 +16,12 @@ const PricingPage = () => {
       </h1>
       <div className="w-full md:w-1/2 mx-auto p-2">
         <p className="font-light text-base md:text-xl text-center">
-          At <span className="font-bold">CarHub</span>, we offer transparent and
-          flexible pricing tailored to meet your travel needs. Our rental prices
-          are determined by the duration of your rental and the type and size of
-          the car you select. This ensures that you only pay for what you need,
-          whether it&apos;s a quick trip across town or an extended journey.
+          At <span className="font-bold">UrbanDrive</span>, we offer transparent
+          and flexible pricing tailored to meet your travel needs. Our rental
+          prices are determined by the duration of your rental and the type and
+          size of the car you select. This ensures that you only pay for what
+          you need, whether it&apos;s a quick trip across town or an extended
+          journey.
         </p>
 
         <h2 className="text-center my-10 text-xl md:text-3xl">

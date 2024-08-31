@@ -54,7 +54,7 @@ const Checkout = () => {
                 if (isCarSelected) {
                     const carName = searchParams.get('car');
 
-                    const response = await axios.get(`${apiUrl}api/cars/${carName}`)
+                    const response = await axios.get(`${apiUrl}/api/cars/${carName}`)
                     console.log(response);
 
                     const fetchedCar = response.data.car;

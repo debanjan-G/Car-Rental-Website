@@ -16,7 +16,7 @@ export async function POST(req) {
       buyer_name: name,
       email,
       phone: number,
-      redirect_url: `${apiUrl}check-payment-status?token=${reqBody.accessToken}`,
+      redirect_url: `${apiUrl}/check-payment-status?token=${reqBody.accessToken}`,
     });
 
     const response = await axios.post(

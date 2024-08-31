@@ -19,7 +19,7 @@ const SearchBar = ({ setCars, setSelectedSortOption }) => {
             setSelectedSortOption({ id: 0, name: 'Sort Cars' })
 
             //fetching cars
-            const response = await axios.get(`${apiUrl}api/cars`)
+            const response = await axios.get(`${apiUrl}/api/cars`)
             console.log(response.data);
 
 

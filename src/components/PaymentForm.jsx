@@ -33,7 +33,7 @@ const PaymentForm = () => {
         try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
             setIsLoading(true)
-            const response = await axios.get(`${apiUrl}api/generate-token`)
+            const response = await axios.get(`${apiUrl}/api/generate-token`)
             // console.log(response.data);
 
             setToken(response.data.res.access_token);
@@ -55,7 +55,7 @@ const PaymentForm = () => {
 
             console.log("TOKEN = ", token);
 
-            const response = await axios.post(`${apiUrl}api/payment-request`, { formData, accessToken: token })
+            const response = await axios.post(`${apiUrl}/api/payment-request`, { formData, accessToken: token })
 
             console.log(response);
 
