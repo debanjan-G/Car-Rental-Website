@@ -225,7 +225,7 @@ const Checkout = () => {
                 {
                     showCarDetails && (
                         <div ref={carDetailsRef} className='flex items-center justify-evenly bg-blue-200 p-10 w-fit mx-auto rounded-lg shadow-lg'>
-                            <SelectedCar
+                            <SelectedCarComponent
                                 name={selectedCar.name}
                                 image={selectedCar.image}
                                 seatingCapacity={selectedCar.seatingCapacity}
