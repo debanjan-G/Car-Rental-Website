@@ -28,8 +28,10 @@ const PaymentStatusPage = () => {
 
   const getPaymentDetails = async () => {
     try {
+      const apiUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/";
       const response = await axios.get(
-        `http://localhost:3000/api/get-payment-details?paymentID=${paymentID}`,
+        `${apiUrl}/api/get-payment-details?paymentID=${paymentID}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`, // Correct header format
