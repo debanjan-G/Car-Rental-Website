@@ -22,6 +22,20 @@ https://github.com/user-attachments/assets/18193170-d3be-4ea2-8812-7b949bf7bd72
 - **React**: For building dynamic and interactive user interfaces. ⚛️
 
 
+## Testing Payment Feature
+
+To test the payment feature in the application, use the dummy test card details provided by Instamojo. These details are meant for testing and will not process real transactions.
+
+### How to Obtain Test Card Details
+
+1. **Visit the Instamojo Documentation**: Go to the [Instamojo documentation](https://docs.instamojo.com) for information on testing payments.
+2. **Find Test Card Details**: Look for the section on test credentials to get the necessary card details for testing.
+
+**Note**: These test card details are provided by Instamojo and are only valid in the test environment. Ensure to replace these with real card details when going live.
+
+### Check out the live website here: https://urbanndrive.netlify.app/
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
