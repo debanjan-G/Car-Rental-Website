@@ -12,7 +12,7 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 
-const SelectedCarComponent = ({ name, image, seatingCapacity, mileage, modelType, modelYear, cost, rentDuration, hourlyRate }) => {
+const SelectedCarComponent = ({ name, image, seatingCapacity, mileage, modelType, cost, rentDuration, hourlyRate }) => {
     return (
 
         <div className='w-full md:w-1/3 flex flex-col items-center justify-center p-4'>
@@ -27,7 +27,7 @@ const SelectedCarComponent = ({ name, image, seatingCapacity, mileage, modelType
             }
 
             <h1 className='text-3xl font-bold '>{name}</h1>
-            <Image src={image} width={400} height={400} className='object-contain my-4' alt='selected-car' />
+            <Image src={image} width={400} height={400} className='object-contain my-4' alt='selected-car' priority />
 
             <hr className='bg-red-500' />
 

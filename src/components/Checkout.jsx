@@ -41,7 +41,7 @@ const Checkout = () => {
     const [showCarDetails, setShowCarDetails] = useState(false);
     const carDetailsRef = useRef();
     const [showAddressForm, setShowAddressForm] = useState(false);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
 
     useEffect(() => {
@@ -105,6 +105,10 @@ const Checkout = () => {
         carDetailsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
+    const navigateToPayment = () => {
+        router.push(`/payment-form?cost=${cost}`)
+    }
+
     return (
         isCarSelected ? (
             <div>
@@ -128,6 +132,7 @@ const Checkout = () => {
                     {loading
                         ? <MyLoader /> :
                         <SelectedCarComponent
+
                             name={selectedCar.name}
                             image={selectedCar.image}
                             seatingCapacity={selectedCar.seatingCapacity}
@@ -165,11 +170,12 @@ const Checkout = () => {
                                     </AlertDialogHeader>
                                     <AlertDialogFooter>
                                         <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                        <AlertDialogAction>
-                                            <Link href={`/payment-form?cost=${cost}`}>
+                                        {/* <AlertDialogAction> */}
+                                        <button className="text-sm md:text-base bg-blue-700 py-2 px-3 rounded-md text-white hover:bg-indigo-600 duration-300 transition" onClick={navigateToPayment}>Continue</button>
+                                        {/* <Lin k href={`/payment-form?cost=${cost}`}>
                                                 Continue
-                                            </Link>
-                                        </AlertDialogAction>
+                                            </Link> */}
+                                        {/* </AlertDialogAction> */}
                                     </AlertDialogFooter>
                                 </AlertDialogContent>
                             </AlertDialog>
@@ -179,47 +185,54 @@ const Checkout = () => {
 
                         :
 
-                        <form className='w-full mx-10 md:w-1/3' onSubmit={handleSubmit}>
-                            <fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
-                                <legend className="text-xl font-bold text-center">Rent details</legend>
+                        (loading ?
 
-                                <div>
-                                    <label className="block">Pickup Date</label>
-                                    <DatePicker />
-                                </div>
+                            <h1 className=' w-full mx-auto text-xl md:text-3xl font-light text-center'>Car Details loading...</h1>
+                            :
 
-                                <div>
-                                    <label className="block">Pickup Time</label>
-                                    <input
-                                        type='time'
-                                        className="mt-1 block rounded-md p-2 shadow-md w-full"
-                                        required
-                                        onChange={(e) => setPickupTime(e.target.value)}
-                                    />
-                                </div>
+                            <form className='w-full mx-10 md:w-1/3' onSubmit={handleSubmit}>
+                                <fieldset className="space-y-8 bg-slate-200 p-4 rounded-sm shadow-lg">
+                                    <legend className="text-xl font-bold text-center">Rent details</legend>
 
-                                <div>
-                                    <label className="block">Return Time</label>
-                                    <input
-                                        type='time'
-                                        className="mt-1 block rounded-md p-2 shadow-md w-full"
-                                        required
-                                        onChange={(e) => setReturnTime(e.target.value)}
-                                    />
-                                </div>
-
-                                {rentDuration ? (
-                                    <div className='w-full'>
-
-
-                                        <Link href={`payment-form?cost=${cost}`} className='my-0 bg-blue-500 no-underline text-white px-4 py-2 rounded-sm w-full'>Proceed to Payment</Link>
+                                    <div>
+                                        <label className="block">Pickup Date</label>
+                                        <DatePicker />
                                     </div>
-                                ) : (
-                                    <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Continue</button>
 
-                                )}
-                            </fieldset>
-                        </form>}
+                                    <div>
+                                        <label className="block">Pickup Time</label>
+                                        <input
+                                            type='time'
+                                            className="mt-1 block rounded-md p-2 shadow-md w-full"
+                                            required
+                                            onChange={(e) => setPickupTime(e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block">Return Time</label>
+                                        <input
+                                            type='time'
+                                            className="mt-1 block rounded-md p-2 shadow-md w-full"
+                                            required
+                                            onChange={(e) => setReturnTime(e.target.value)}
+                                        />
+                                    </div>
+
+                                    {rentDuration ? (
+                                        <div className='w-full'>
+
+
+                                            <Link href={`payment-form?cost=${cost}`} className='my-0 bg-blue-500 no-underline text-white px-4 py-2 rounded-sm w-full'>Proceed to Payment</Link>
+                                        </div>
+                                    ) : (
+                                        <button type='submit' className="w-full text-sm md:text-base bg-blue-700 p-2 rounded-md text-white font-medium hover:bg-indigo-600 duration-300 transition">Continue</button>
+
+                                    )}
+                                </fieldset>
+                            </form>)
+                    }
+
                 </div>
 
                 {
