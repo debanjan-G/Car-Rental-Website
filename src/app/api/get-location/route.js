@@ -3,8 +3,8 @@ import axios from "axios";
 
 export async function GET(req) {
   try {
-    userAgent =
-      "UrbannDrive/1.0 (https://urbanndrive.netlify.app; contact@urbanndrive.netlify.app)";
+    // userAgent =
+    //   "UrbannDrive/1.0 (https://urbanndrive.netlify.app; contact@urbanndrive.netlify.app)";
     const searchParams = req.nextUrl.searchParams;
 
     console.log(searchParams);
@@ -18,7 +18,8 @@ export async function GET(req) {
       `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
       {
         headers: {
-          "User-Agent": userAgent,
+          // "User-Agent": userAgent,
+          Referrer: "https://urbanndrive.netlify.app",
         },
       }
     );
