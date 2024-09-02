@@ -13,7 +13,7 @@ export async function GET(req) {
       `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
     );
 
-    // console.log(response);
+    console.log(response.data.display_name);
 
     return NextResponse.json({ success: true, response: response.data });
   } catch (error) {

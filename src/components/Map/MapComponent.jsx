@@ -11,7 +11,7 @@ const MapComponent = () => {
 
     const [geocode, setGeocode] = useState({ lat: "22.5744", lng: "88.3629" })
     const [loading, setLoading] = useState(false)
-    const [address, setAddress] = useState({ city: "", suburb: "", neighbourhood: "", postcode: "", state: "" })
+    const [displayName, setDisplayName] = useState("")
 
 
     const UpdateMapCenter = () => {
@@ -49,14 +49,7 @@ const MapComponent = () => {
 
             console.log(response);
 
-            let { city, town, postcode, suburb, state } = response.data.response.address;
-
-            // Set fallback values to avoid undefined
-            city = city || town || "Unknown City";
-            suburb = suburb || "Unknown Suburb";
-            state = state || "Unknown State";
-            postcode = postcode || "Unknown Postcode";
-            setAddress({ city, postcode, suburb, state })
+            setDisplayName(response.data.response.display_name)
 
         } catch (error) {
             console.log("ERROR - ", error);
@@ -68,7 +61,6 @@ const MapComponent = () => {
     }
 
     const getUserLocation = () => {
-
         navigator.geolocation.getCurrentPosition(async (position) => {
             try {
                 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
@@ -82,16 +74,7 @@ const MapComponent = () => {
                 // making API request to get address from coordinates
                 const response = await axios.get(`${apiUrl}/api/get-location?lat=${latitude}&lng=${longitude}`)
 
-                let { city, town, postcode, suburb, state } = response.data.response.address;
-
-                // Set fallback values to avoid undefined
-                city = city || town || "Unknown City";
-                suburb = suburb || "Unknown Suburb";
-                state = state || "Unknown State";
-                postcode = postcode || " ";
-
-                //setting the state address
-                setAddress({ city, postcode, suburb, state })
+                setDisplayName(response.data.response.display_name)
 
 
             } catch (error) {
@@ -111,7 +94,7 @@ const MapComponent = () => {
             <div className='text-sm md:text-base font-light text-center my-2 bg-white rounded-sm p-2 min-w-fit'>
                 {loading ? <Spinner /> : <h1 >
                     {address.city === '' ? "Selected Address will appear here " :
-                        ` ${address.suburb}, ${address.city}- ${address.postcode}, ${address.state} `
+                        ` ${displayName}`
                     }
                 </h1>}
 
