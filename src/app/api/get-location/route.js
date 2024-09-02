@@ -19,7 +19,7 @@ export async function GET(req) {
       {
         headers: {
           // "User-Agent": userAgent,
-          Referrer: "https://urbanndrive.netlify.app",
+          Referer: "https://urbanndrive.netlify.app",
         },
       }
     );
