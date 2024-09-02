@@ -19,8 +19,7 @@ const MapComponent = () => {
 
         useEffect(() => {
             map.setView([geocode.lat, geocode.lng])
-        }, [map, geocode])
-
+        }, [map])
     }
 
 
@@ -93,7 +92,7 @@ const MapComponent = () => {
         <div className='p-4'>
             <div className='text-sm md:text-base font-light text-center my-2 bg-white rounded-sm p-2 min-w-fit'>
                 {loading ? <Spinner /> : <h1 >
-                    {address.city === '' ? "Selected Address will appear here " :
+                    {displayName === '' ? "Selected Address will appear here " :
                         ` ${displayName}`
                     }
                 </h1>}

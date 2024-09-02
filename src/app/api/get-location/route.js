@@ -4,6 +4,9 @@ import axios from "axios";
 export async function GET(req) {
   try {
     const searchParams = req.nextUrl.searchParams;
+
+    console.log(searchParams);
+
     // console.log("SEARCH PARAMS = ", searchParams);
 
     const lat = searchParams.get("lat");
