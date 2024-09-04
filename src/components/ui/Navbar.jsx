@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Tab, TabGroup, TabList } from '@headlessui/react'
 import Image from 'next/image'
-import Logo from "../../../public/logo.jpg"
+import Logo from "../../../public/logo-removebg-preview.png"
 
 const Navbar = () => {
     const pathname = usePathname()
@@ -47,7 +47,7 @@ const Navbar = () => {
 
                     <Link href='/faqs' className='no-underline rounded-full'>
                         <Tab
-                            className={ ` min-w-fit md:w-32 rounded-full py-1 px-2 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
+                            className={` min-w-fit md:w-32 rounded-full py-1 px-2 md:px-3 text-xs md:text-base font-semibold focus:outline-none 
                         ${pathname === '/faqs' ? 'bg-blue-500 text-white' : 'data-[hover]:bg-white/5'} 
                         transition duration-200`}
                         >

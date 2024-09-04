@@ -19,6 +19,7 @@ const PaymentForm = () => {
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [amount, setAmount] = useState("");
+    const [showErrorMsg, setShowErrorMsg] = useState(false)
 
     useEffect(() => {
         console.log("Token state after update:", token);
@@ -51,6 +52,11 @@ const PaymentForm = () => {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
             e.preventDefault();
 
+            if (number.length !== 10) {
+                setShowErrorMsg(true);
+                return;
+            }
+
             const formData = { name, email, number, amount };
 
             console.log("TOKEN = ", token);
@@ -63,7 +69,7 @@ const PaymentForm = () => {
             router.push(response.data.redirectURL);
 
         } catch (error) {
-
+            console.log(error);
         }
     }
 
@@ -104,6 +110,11 @@ const PaymentForm = () => {
                     </Field>
                     <Field>
                         <Label className="text-sm/6 font-medium text-black">Phone Number</Label>
+
+
+                        <p className={`font-light text-sm ${showErrorMsg ? "text-red-500 font-semibold" : ""}`}>The Number must be exactly 10 digits.</p>
+
+
                         <Input
                             required
                             type='number'

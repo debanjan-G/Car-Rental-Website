@@ -8,6 +8,7 @@ export async function POST(req) {
 
     const { name, email, number, amount } = reqBody.formData;
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/";
+
     const body = new URLSearchParams({
       allow_repeated_payments: false,
       send_email: false,
@@ -39,9 +40,9 @@ export async function POST(req) {
       redirectURL: response.data.longurl,
     });
   } catch (error) {
-    // console.log(error);
+    console.log("ERROR = ", error);
     return NextResponse.json(
-      { success: false, msg: "Something Went Wrong" },
+      { success: false, msg: error.message },
       { status: 500 }
     );
   }
