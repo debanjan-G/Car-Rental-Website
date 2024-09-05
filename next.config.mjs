@@ -28,6 +28,7 @@ const nextConfig = {
       "static.vecteezy.com",
       "www.vdm.ford.com",
       "qph.cf2.quoracdn.net",
+      "www.dealerfireblog.com",
     ],
   },
 };
