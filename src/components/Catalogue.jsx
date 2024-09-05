@@ -25,19 +25,21 @@ const Catalogue = () => {
     const [carsPerPage, setCarsPerPage] = useState(6);
     const catalogueRef = useRef()
     const [selectedSortOption, setSelectedSortOption] = useState({ id: 0, name: 'Sort Cars' });
+    
+    const [searchedCarCompany, setSearchedCarCompany] = useState("")
 
 
 
     useEffect(() => {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/';
+
         const fetchAllCars = async () => {
             try {
                 setLoading(true)
                 const response = await axios.get(`${apiUrl}/api/cars`)
                 console.log(response);
                 setCars(response.data.cars);
-
-
+                setSearchedCarCompany("")
             } catch (error) {
                 console.log(error);
             } finally {
@@ -68,9 +70,6 @@ const Catalogue = () => {
     const lastCarIndex = currentPage * carsPerPage;
     const firstCarIndex = lastCarIndex - carsPerPage;
 
-
-
-
     return (
         <div className='my-10 p-4' ref={catalogueRef}>
             <div className='flex flex-col items-center mb-10'>
@@ -82,7 +81,7 @@ const Catalogue = () => {
 
 
             <div className='flex items-center justify-center gap-2 flex-wrap'>
-                <SearchBar setCars={setCars} setSelectedSortOption={setSelectedSortOption} />
+                <SearchBar searchedCarCompany={searchedCarCompany} setSearchedCarCompany={setSearchedCarCompany} setCars={setCars} setSelectedSortOption={setSelectedSortOption} setFetchToggler={setFetchToggler} setCurrentPage={setCurrentPage} />
 
                 <SortCars setCars={setCars} cars={cars} setCurrentPage={setCurrentPage} selectedSortOption={selectedSortOption} setSelectedSortOption={setSelectedSortOption} />
             </div>

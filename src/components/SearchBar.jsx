@@ -1,13 +1,15 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from './ui/SearchIcon';
 import CompanyMenu from './CompanyMenu';
 import axios from 'axios';
 
 
-const SearchBar = ({ setCars, setSelectedSortOption }) => {
+const SearchBar = ({ setSearchedCarCompany, searchedCarCompany, setCars, setSelectedSortOption, setFetchToggler, setCurrentPage }) => {
 
-    const [searchedCarCompany, setSearchedCarCompany] = useState()
+
+
+    useEffect(() => { setCurrentPage(1) }, [searchedCarCompany])
 
 
     const handleFormSubmit = async (e) => {
@@ -38,21 +40,30 @@ const SearchBar = ({ setCars, setSelectedSortOption }) => {
 
     }
 
+    const handleShowAllCars = () => {
+        setFetchToggler(prev => !prev)
+    }
 
     return (
-        <form onSubmit={handleFormSubmit} className='w-full'>
-            <div className='flex gap-2 justify-center'>
+        <>
+            <form onSubmit={handleFormSubmit} className='w-full'>
+                <div className='flex gap-2 justify-center'>
 
 
 
-                <CompanyMenu setCompany={setSearchedCarCompany} />
-                <button type='submit' className='hover:scale-105 transition duration-200'>
-                    <SearchIcon />
-                </button>
+                    <CompanyMenu setCompany={setSearchedCarCompany} />
+                    <button type='submit' className='hover:scale-105 transition duration-200'>
+                        <SearchIcon />
+                    </button>
 
 
-            </div>
-        </form>
+                </div>
+            </form>
+
+            {searchedCarCompany !== "" &&
+                <button onClick={handleShowAllCars} className='min-w-1/2 bg-slate-950 text-white rounded-md py-2 px-4 my-4'>Show all available cars</button>
+            }
+        </>
     )
 }
 
